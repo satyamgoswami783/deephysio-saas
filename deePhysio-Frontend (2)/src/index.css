@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --clinic-primary: #2EA7B8;
+    --clinic-primary-dark: #268d9c;
+  }
+
+  body {
+    @apply bg-slate-50 text-slate-900 antialiased text-base selection:bg-clinicPrimary/20 selection:text-clinicPrimary;
+    font-family: 'Outfit', sans-serif;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), filter 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  body.language-transitioning {
+    opacity: 0.65;
+    filter: blur(0.5px);
+    pointer-events: none;
+  }
+}
+
+@layer components {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-slate-200 rounded-full hover:bg-slate-300 transition-colors;
+  }
+
+  /* Dark blue scrollbar for appointments to match sidebar */
+  .appointment-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .appointment-scrollbar::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  .appointment-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #0f172a;
+    border-radius: 9999px;
+  }
+
+  .appointment-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: #1e293b;
+  }
+
+  .card-clinic {
+    @apply bg-white border border-slate-200 p-4 rounded-lg transition-all duration-200;
+  }
+
+  .btn-primary {
+    @apply bg-clinicPrimary text-white px-4 py-2 rounded-md font-bold text-xs uppercase tracking-wider hover:bg-clinicPrimary-dark transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply bg-white text-slate-600 border border-slate-200 px-4 py-2 rounded-md font-bold text-xs uppercase tracking-wider hover:bg-slate-50 transition-all active:scale-95 disabled:opacity-50;
+  }
+
+  .input-clinic {
+    @apply w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-md text-sm text-slate-700 outline-none focus:border-clinicPrimary focus:ring-1 focus:ring-clinicPrimary/20 transition-all placeholder:text-slate-400;
+  }
+
+  /* Compact form grid */
+  .form-grid-clinic {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-4;
+  }
+
+  /* Status badges */
+  .badge-clinic {
+    @apply px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border;
+  }
+
+  /* Clinical sections */
+  .section-flat {
+    @apply bg-white border border-slate-200 rounded-lg overflow-hidden mb-4;
+  }
+
+  .section-header-flat {
+    @apply px-4 py-3 bg-slate-50/50 border-b border-slate-100 flex items-center justify-between;
+  }
+
+  /* Hide scrollbar but allow scrolling */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  .section-content-flat {
+    @apply p-4;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 3s ease-in-out infinite;
+}
+
+.bg-mesh {
+  background-color: #f8fafc;
+  background-image:
+    radial-gradient(at 0% 0%, rgba(46, 167, 184, 0.1) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(245, 158, 11, 0.05) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(46, 167, 184, 0.08) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(245, 158, 11, 0.05) 0px, transparent 50%);
+}
+
+/* Hide Google Translate Banner Frame & Tooltips completely */
+.goog-te-banner-frame,
+.goog-te-banner-frame.skiptranslate,
+iframe.goog-te-banner-frame,
+iframe.skiptranslate,
+iframe[class*="skiptranslate"],
+iframe[id*=":1.container"],
+iframe[id*=":2.container"] {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  height: 0px !important;
+  width: 0px !important;
+  max-height: 0px !important;
+  border: none !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  top: -9999px !important;
+  left: -9999px !important;
+  z-index: -99999 !important;
+}
+
+#goog-gt-tt,
+.goog-te-balloon-frame,
+#goog-gt-votingForm,
+.VIpgJd-ZVi9od-aZ2wEe-wOHMyf,
+.VIpgJd-ZVi9od-aZ2wEe-wOHMyf-ti6hGc,
+.VIpgJd-ZVi9od-xl07Ob-OEVmcd {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+html, body {
+  top: 0px !important;
+  position: static !important;
+  margin-top: 0px !important;
+}

@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Healthcare Clinic Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+
+    <!-- 1. HIDE GOOGLE TOPBAR BANNER & POPUPS COMPLETELY -->
+    <style>
+      .goog-te-banner-frame,
+      .goog-te-banner-frame.skiptranslate,
+      iframe.goog-te-banner-frame,
+      iframe.skiptranslate,
+      iframe[class*="skiptranslate"],
+      iframe[id*=":1.container"],
+      iframe[id*=":2.container"] {
+        display: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        height: 0px !important;
+        width: 0px !important;
+        max-height: 0px !important;
+        border: none !important;
+        pointer-events: none !important;
+        position: absolute !important;
+        top: -9999px !important;
+        left: -9999px !important;
+        z-index: -99999 !important;
+      }
+      #goog-gt-tt,
+      .goog-te-balloon-frame,
+      #goog-gt-votingForm,
+      .goog-te-gadget-icon,
+      .goog-logo-link,
+      .goog-te-spinner-pos,
+      .goog-te-spinner,
+      .VIpgJd-ZVi9od-aZ2wEe-wOHMyf,
+      .VIpgJd-ZVi9od-aZ2wEe-wOHMyf-ti6hGc,
+      .VIpgJd-ZVi9od-xl07Ob-OEVmcd {
+        display: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+      }
+      html, body {
+        top: 0px !important;
+        position: static !important;
+        margin-top: 0px !important;
+      }
+      .goog-te-gadget {
+        color: transparent !important;
+        font-size: 0 !important;
+      }
+      .goog-te-gadget span,
+      .goog-te-gadget .goog-logo-link {
+        display: none !important;
+      }
+      body.translated-ltr,
+      body.translated-rtl {
+        font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+      }
+    </style>
+
+    <!-- 2. SCRIPT TO PREVENT GOOGLE FROM PUSHING BODY DOWN -->
+    <script type="text/javascript">
+      (function() {
+        function suppressGoogleBanner() {
+          if (document.body && document.body.style.top && document.body.style.top !== '0px') {
+            document.body.style.top = '0px';
+          }
+          var banners = document.querySelectorAll('iframe.skiptranslate, .goog-te-banner-frame, iframe[id*=":1.container"], iframe[id*=":2.container"]');
+          for (var i = 0; i < banners.length; i++) {
+            banners[i].style.setProperty('display', 'none', 'important');
+            banners[i].style.setProperty('visibility', 'hidden', 'important');
+            banners[i].style.setProperty('height', '0px', 'important');
+          }
+        }
+        var obs = new MutationObserver(suppressGoogleBanner);
+        obs.observe(document.documentElement, { attributes: true, childList: true, subtree: true });
+        window.addEventListener('DOMContentLoaded', suppressGoogleBanner);
+        window.addEventListener('load', suppressGoogleBanner);
+        setInterval(suppressGoogleBanner, 400);
+      })();
+    </script>
+
+    <!-- 2. INITIALIZE GOOGLE TRANSLATE ENGINE -->
+    <script type="text/javascript">
+      window.googleTranslateElementInit = function () {
+        try {
+          if (window.google && window.google.translate && window.google.translate.TranslateElement) {
+            new window.google.translate.TranslateElement({
+              pageLanguage: 'en',
+              includedLanguages: 'en,hi,ar,de,es',
+              autoDisplay: false
+            }, 'google_translate_master_container');
+          }
+        } catch (e) {
+          console.error('Google Translate Init error:', e);
+        }
+      };
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  </head>
+  <body>
+    <!-- 3. OFFSCREEN GOOGLE CONTAINER (Active in DOM but invisible to user) -->
+    <div 
+      id="google_translate_master_container" 
+      style="position: absolute; top: -9999px; left: -9999px; width: 1px; height: 1px; overflow: hidden; opacity: 0; pointer-events: none;"
+    ></div>
+
+    <div id="root"></div>
+
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
