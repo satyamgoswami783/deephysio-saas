@@ -37,7 +37,7 @@ const Register = () => {
     acceptTerms: false
   });
 
-  const [clinicProfile, setClinicProfile] = useState({ clinicName: 'Healthcare Clinic', logoDataUrl: '' });
+  const [clinicProfile, setClinicProfile] = useState({ clinicName: 'ClinicPilot', logoDataUrl: '' });
 
   useEffect(() => {
     const fetchBranding = async () => {
@@ -188,7 +188,7 @@ const Register = () => {
         sessionStorage.setItem("deephysio_user", JSON.stringify(user));
         sessionStorage.setItem("deephysio_role", user.role);
 
-        showToast('Registration successful! Welcome to DeePhysio.', 'success');
+        showToast('Registration successful! Welcome to ClinicPilot.', 'success');
         
         // Directly navigate to dashboard with full state reload
         window.location.href = "/dashboard";
@@ -209,7 +209,7 @@ const Register = () => {
     '7-Day Free Trial': { price: '₹0 for 7 Days', desc: 'Experience the full power of our SaaS risk-free.', features: ['7 Days full feature trial access', 'Duration: 7 Days'] },
     'Starter': { price: '₹999/mo', desc: 'Essential clinic management features.', features: ['Essential clinic management features', 'Duration: Monthly'] },
     'Standard': { price: '₹1,299/mo', desc: 'Complete features for growing clinics.', features: ['Complete features for growing clinics', 'Duration: Monthly'] },
-    'Pro': { price: '₹1,499/mo', desc: 'Advanced AI features and priority support.', features: ['Kiaan AI Assistant & AI Features', 'Advanced features and priority support', 'Duration: Monthly'] },
+    'Pro': { price: '₹1,499/mo', desc: 'Advanced AI features and priority support.', features: ['ClinicPilot AI Assistant & AI Features', 'Advanced features and priority support', 'Duration: Monthly'] },
     'Custom Plan': { price: 'Custom', desc: 'Tailored to your clinic.', features: ['SaaS with customization', 'Personal domain', 'Personal branding', 'AI and automation'] },
     'Free Trial': { price: '₹0 for 7 Days', desc: 'Experience the full power of our SaaS risk-free.', features: ['Full Premium Access', 'Unlimited Patients', 'Unlimited Staff', 'No Credit Card Required', 'Cancel Anytime'] }
   };
@@ -279,7 +279,7 @@ const Register = () => {
                 <img src={clinicProfile.logoDataUrl || "/logo.png"} alt="Logo" className="w-full h-full object-contain" />
               </div>
               <h2 className="text-[10px] font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-teal-500 tracking-[0.2em] uppercase leading-tight notranslate" translate="no">
-                {clinicProfile.clinicName || 'Healthcare Clinic'}
+                {clinicProfile.clinicName && clinicProfile.clinicName !== 'Healthcare Clinic' && clinicProfile.clinicName !== 'DeePhysio Clinic' ? clinicProfile.clinicName : 'ClinicPilot'}
               </h2>
             </motion.div>
 

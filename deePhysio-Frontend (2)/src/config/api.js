@@ -1,7 +1,7 @@
 // Global API configuration
 const API_BASE_URL = (
   import.meta.env.VITE_API_BASE_URL ||
-  'https://deephysioclinical-production.up.railway.app/api'
+  'https://api-saas.clinicpilotdemo.store/api'
 ).replace(/\/$/, '');
 
 /**

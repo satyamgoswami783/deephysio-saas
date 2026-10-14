@@ -74,7 +74,7 @@ class PwaManager {
     window.addEventListener('appinstalled', () => {
       this.deferredInstallPrompt = null;
       this.notifyInstallListeners(false);
-      console.log('[PWA] deePhysio installed successfully as standalone application');
+      console.log('[PWA] ClinicPilot installed successfully as standalone application');
     });
   }
 

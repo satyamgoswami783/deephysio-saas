@@ -1,6 +1,6 @@
 {
   "appId": "com.kiaan.deephysio",
-  "appName": "deePhysio",
+  "appName": "ClinicPilot",
   "webDir": "dist",
   "server": {
     "androidScheme": "https",
@@ -10,7 +10,7 @@
     "SplashScreen": {
       "launchShowDuration": 3000,
       "launchAutoHide": false,
-      "backgroundColor": "#2EA7B8",
+      "backgroundColor": "#0F172A",
       "androidSplashResourceName": "splash",
       "androidScaleType": "CENTER_CROP",
       "showSpinner": false,

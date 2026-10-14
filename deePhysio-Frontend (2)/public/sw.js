@@ -1,7 +1,7 @@
-// deePhysio Clinical SaaS Service Worker
-const CACHE_VERSION = 'deephysio-v1.0.0';
-const STATIC_CACHE = `deephysio-static-${CACHE_VERSION}`;
-const DYNAMIC_CACHE = `deephysio-dynamic-${CACHE_VERSION}`;
+// ClinicPilot Clinical SaaS Service Worker
+const CACHE_VERSION = 'clinicpilot-v2.0.0';
+const STATIC_CACHE = `clinicpilot-static-${CACHE_VERSION}`;
+const DYNAMIC_CACHE = `clinicpilot-dynamic-${CACHE_VERSION}`;
 
 // Precache essential application shell assets
 const PRECACHE_ASSETS = [
@@ -127,7 +127,7 @@ self.addEventListener('fetch', (event) => {
             <head>
               <meta charset="UTF-8" />
               <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-              <title>deePhysio - Offline</title>
+              <title>ClinicPilot - Offline</title>
               <style>
                 body { margin:0; font-family: system-ui, -apple-system, sans-serif; background: #0F172A; color: #fff; display: flex; align-items: center; justify-content: center; height: 100vh; text-align: center; padding: 20px; box-sizing: border-box; }
                 .card { max-width: 400px; background: #1E293B; padding: 32px; border-radius: 20px; border: 1px solid #334155; }
@@ -139,7 +139,7 @@ self.addEventListener('fetch', (event) => {
             <body>
               <div class="card">
                 <h1>Device Offline</h1>
-                <p>deePhysio requires an active internet connection to securely synchronize clinical data. Please check your network and reconnect.</p>
+                <p>ClinicPilot requires an active internet connection to securely synchronize clinical data. Please check your network and reconnect.</p>
                 <button onclick="window.location.reload()">Retry Connection</button>
               </div>
             </body>

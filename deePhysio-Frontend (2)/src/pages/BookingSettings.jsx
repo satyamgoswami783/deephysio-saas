@@ -11,7 +11,7 @@ const BookingSettings = () => {
     maxFuture: '3 Months ahead',
     requirePayment: true,
     autoRebooking: false,
-    successMessage: 'Your appointment at DeePhysio is confirmed! We look forward to seeing you.',
+    successMessage: 'Your appointment at ClinicPilot is confirmed! We look forward to seeing you.',
     emails: { booking: true, cancellation: true, daily: false },
     widgetColor: '#2ea7b8',
     apiKey: 'pk_test_dee_923847293847',

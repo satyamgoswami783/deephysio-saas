@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="cpTealGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06B6D4" />
+      <stop offset="100%" stop-color="#2EA7B8" />
+    </linearGradient>
+  </defs>
+
+  <g >
+    <!-- 1. THE REFINED "C" GESTURE (Clean, bold, continuous arc) -->
+    <path 
+      d="M 360 142
+         C 285 82, 165 82, 108 156
+         C 56 222, 56 290, 108 356
+         C 165 430, 285 430, 360 370
+         C 374 358, 374 338, 360 326
+         C 346 314, 326 314, 312 325
+         C 255 368, 175 360, 140 315
+         C 106 270, 106 242, 140 197
+         C 175 152, 255 144, 312 187
+         C 326 198, 346 198, 360 186
+         C 374 174, 374 154, 360 142 Z"
+      fill="url(#cpTealGrad)"
+    />
+
+    <!-- 2. THE REFINED "P" PILLAR & BOWL (Confident, balanced proportions) -->
+    <path 
+      d="M 210 162
+         C 210 146, 223 134, 239 134
+         L 300 134
+         C 356 134, 396 172, 396 226
+         C 396 280, 356 318, 300 318
+         L 258 318
+         L 258 382
+         C 258 398, 245 410, 229 410
+         C 213 410, 210 398, 210 382
+         Z"
+      fill="#0F172A"
+    />
+
+    <!-- 3. CENTERED MEDICAL CROSS (Simple, iconic, minimal) -->
+    <!-- Centered inside the P loop at (300, 226) -->
+    <g transform="translate(300, 226)">
+      <rect x="-6" y="-22" width="12" height="44" rx="4" fill="#2EA7B8" />
+      <rect x="-22" y="-6" width="44" height="12" rx="4" fill="#2EA7B8" />
+    </g>
+  </g>
+</svg>

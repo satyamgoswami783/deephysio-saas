@@ -457,7 +457,7 @@ const PaymentHistory = () => {
             {/* Action Bar (Pinned) like Billing.jsx */}
             <div className="flex items-center justify-between pb-6 border-b border-slate-100 bg-white z-50 shrink-0">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center font-black">DP</div>
+                <div className="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center font-black">CP</div>
                 <div>
                   <p className="text-[10px] font-black uppercase text-slate-400 tracking-widest">Digital Ledger</p>
                   <h3 className="text-sm font-black text-slate-900 uppercase tracking-tight">{selectedTx.receiptReference}</h3>

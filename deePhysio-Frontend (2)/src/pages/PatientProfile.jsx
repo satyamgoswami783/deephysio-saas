@@ -565,7 +565,7 @@ const PatientProfile = () => {
         heightLeft -= pdfHeight;
       }
 
-      pdf.save(`DeePhysio_${type}_${patientData.id}_${new Date().getTime()}.pdf`);
+      pdf.save(`ClinicPilot_${type}_${patientData.id}_${new Date().getTime()}.pdf`);
       
       showToast('Clinical ledger downloaded successfully.', 'success');
     } catch (error) {
@@ -1527,7 +1527,7 @@ const PatientProfile = () => {
                   )}
                 </div>
                 <div className="mt-8 pt-6 border-t border-slate-100 flex justify-between items-center text-slate-400 px-2">
-                  <p className="text-[9px] font-black uppercase tracking-widest">Verified Digital Assessment • DeePhysio</p>
+                  <p className="text-[9px] font-black uppercase tracking-widest">Verified Digital Assessment • ClinicPilot</p>
                   <p className="text-[9px] font-bold uppercase">{new Date().toLocaleDateString('en-IN')}</p>
                 </div>
               </div>
@@ -1619,14 +1619,14 @@ const PatientProfile = () => {
                   </div>
                   
                   <div className="mt-auto pt-10 text-center border-t border-slate-50">
-                    <p className="text-[9px] font-black text-slate-300 uppercase tracking-[0.5em]">Verified Clinical Transaction • DeePhysio Ledger</p>
+                    <p className="text-[9px] font-black text-slate-300 uppercase tracking-[0.5em]">Verified Clinical Transaction • ClinicPilot Ledger</p>
                   </div>
                </div>
             ) : currentExport.type === 'Appointments' ? (
               <div className="space-y-6">
                  {/* Re-use simplified ledger for tabular data if it fits the theme, but keep it clean */}
                   <div className="flex items-center gap-3 border-b-2 border-clinicPrimary pb-6 mb-6">
-                    <div className="w-12 h-12 rounded-xl bg-clinicPrimary text-white flex items-center justify-center font-black text-xl">DP</div>
+                    <div className="w-12 h-12 rounded-xl bg-clinicPrimary text-white flex items-center justify-center font-black text-xl">CP</div>
                     <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight">Appointment History</h2>
                   </div>
                   <table className="w-full text-left border-collapse">

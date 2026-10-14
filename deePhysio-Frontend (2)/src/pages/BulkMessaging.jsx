@@ -384,7 +384,7 @@ const BulkMessaging = () => {
             </span>
             <button
               type="button"
-              onClick={() => setQuickTemplate('Hello {{first_name}}, please be informed that DeePhysio Clinic will have updated hours this week. For inquiries or rescheduling, reply directly to this message.')}
+              onClick={() => setQuickTemplate('Hello {{first_name}}, please be informed that ClinicPilot will have updated hours this week. For inquiries or rescheduling, reply directly to this message.')}
               className="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 shrink-0 transition-colors cursor-pointer"
             >
               📢 Clinic Update
@@ -398,7 +398,7 @@ const BulkMessaging = () => {
             </button>
             <button
               type="button"
-              onClick={() => setQuickTemplate('Hello {{name}}, thank you for choosing DeePhysio Clinic. How are your symptoms progressing after your latest session?')}
+              onClick={() => setQuickTemplate('Hello {{name}}, thank you for choosing ClinicPilot. How are your symptoms progressing after your latest session?')}
               className="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 shrink-0 transition-colors cursor-pointer"
             >
               💙 Recovery Check-in

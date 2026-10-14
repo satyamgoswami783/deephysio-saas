@@ -35,7 +35,7 @@ export const PrivacyPolicy = () => {
           </div>
           <h2 className="text-2xl font-black text-slate-900 mb-4">Introduction & Commitment</h2>
           <p className="text-sm text-slate-600 leading-relaxed">
-            {BRAND_CONFIG.productName} ("deePhysio", "we", "our", or "us") provides specialized physical therapy, clinic management, and rehabilitation clinical workflow solutions. We are rigorously committed to protecting patient health information, practitioner credentials, and clinical practice confidentiality in compliance with applicable healthcare data protection standards.
+            {BRAND_CONFIG.productName} ("ClinicPilot", "we", "our", or "us") provides specialized physical therapy, clinic management, and rehabilitation clinical workflow solutions. We are rigorously committed to protecting patient health information, practitioner credentials, and clinical practice confidentiality in compliance with applicable healthcare data protection standards.
           </p>
         </div>
 

@@ -166,12 +166,12 @@ const PaymentReminders = () => {
     const { patient, email, formattedAmount, id, stage, invoiceNumber } = reminder;
     const invoiceRef = invoiceNumber || id.split('-').pop()?.toUpperCase() || id;
     
-    let subject = `Invoice Payment Reminder - DeePhysio (${invoiceRef})`;
-    let body = `Dear ${patient},\n\nThis is a friendly reminder that your invoice ${invoiceRef} for the amount of ${formattedAmount} is currently ${stage.toLowerCase()}.\n\nPlease arrange for payment at your earliest convenience.\n\nThank you,\nDeePhysio Team`;
+    let subject = `Invoice Payment Reminder - ClinicPilot (${invoiceRef})`;
+    let body = `Dear ${patient},\n\nThis is a friendly reminder that your invoice ${invoiceRef} for the amount of ${formattedAmount} is currently ${stage.toLowerCase()}.\n\nPlease arrange for payment at your earliest convenience.\n\nThank you,\nClinicPilot Team`;
 
     if (stage === 'Final Notice') {
         subject = `URGENT: Final Notice for Invoice ${invoiceRef}`;
-        body = `Dear ${patient},\n\nThis is a final notice regarding your overdue invoice ${invoiceRef} for the amount of ${formattedAmount}.\n\nPlease ensure immediate payment to avoid further action.\n\nThank you,\nDeePhysio Team`;
+        body = `Dear ${patient},\n\nThis is a final notice regarding your overdue invoice ${invoiceRef} for the amount of ${formattedAmount}.\n\nPlease ensure immediate payment to avoid further action.\n\nThank you,\nClinicPilot Team`;
     }
 
     setEmailDraft({

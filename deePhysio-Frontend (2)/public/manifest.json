@@ -1,7 +1,7 @@
 {
-  "name": "deePhysio Clinical SaaS",
-  "short_name": "deePhysio",
-  "description": "Comprehensive Physical Therapy, Rehabilitation & Clinic Management SaaS",
+  "name": "ClinicPilot",
+  "short_name": "ClinicPilot",
+  "description": "Modern Clinical Management Software",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

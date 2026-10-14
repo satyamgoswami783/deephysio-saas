@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">deePhysio</string>
-    <string name="title_activity_main">deePhysio</string>
+    <string name="app_name">ClinicPilot</string>
+    <string name="title_activity_main">ClinicPilot</string>
     <string name="package_name">com.kiaan.deephysio</string>
     <string name="custom_url_scheme">com.kiaan.deephysio</string>
 </resources>

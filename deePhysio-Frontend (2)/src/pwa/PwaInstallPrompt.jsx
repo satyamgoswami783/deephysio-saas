@@ -33,7 +33,7 @@ export const PwaInstallPrompt = () => {
           <FaDownload className="w-3.5 h-3.5" />
         </div>
         <div>
-          <span className="font-bold text-slate-100">Install deePhysio App</span>
+          <span className="font-bold text-slate-100">Install ClinicPilot App</span>
           <span className="hidden sm:inline text-slate-400 ml-1.5">
             Add to home screen for faster offline access and fullscreen experience.
           </span>

@@ -25,7 +25,7 @@ const Sidebar = ({ isOpen, toggleSidebar, onLogout, userRole, userData: propUser
   // ── Clinic Branding from Settings ──
   const userTenantClinicName = propUserData?.tenant?.clinic_name || propUserData?.tenant?.clinicName || propUserData?.clinic_name || '';
   const [clinicLogo, setClinicLogo] = useState('');
-  const [clinicName, setClinicName] = useState(userTenantClinicName || 'Healthcare Clinic');
+  const [clinicName, setClinicName] = useState(userTenantClinicName || 'ClinicPilot');
 
   useEffect(() => {
     if (userTenantClinicName) {
@@ -328,20 +328,17 @@ const Sidebar = ({ isOpen, toggleSidebar, onLogout, userRole, userData: propUser
           isOpen ? "opacity-100 scale-100" : "opacity-0 scale-90 w-0 h-0 hidden md:flex absolute"
         )}>
           {/* Flexible Master Logo */}
-          <div className={cn(
-            "flex items-center justify-center transition-all duration-300",
-            "w-16 h-16 rounded-full overflow-hidden border-2 border-slate-700/70 bg-slate-900/90 p-2.5 shadow-[0_0_15px_rgba(45,212,191,0.2)] hover:border-teal-400/50"
-          )}>
+          <div className="w-14 h-14 flex items-center justify-center">
             <img
-              src={clinicLogo || "/logo.png"}
+              src={clinicLogo || "/logo-icon.svg"}
               alt="Logo"
-              className="w-full h-full object-contain drop-shadow-md transition-transform duration-300 hover:scale-105"
+              className="w-full h-full object-contain transition-transform duration-300 hover:scale-105"
             />
           </div>
 
           {/* Clinic Name Heading */}
-          <h1 className="text-[11px] font-black tracking-wider uppercase text-center w-48 leading-tight px-2 text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 drop-shadow-sm mt-2 notranslate" translate="no">
-            {clinicName && clinicName !== 'DeePhysio Clinic' ? clinicName : 'Healthcare Clinic'}
+          <h1 className="text-[12px] font-black tracking-wider uppercase text-center w-48 leading-tight px-2 text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 drop-shadow-sm mt-2 notranslate" translate="no">
+            {clinicName && clinicName !== 'DeePhysio Clinic' && clinicName !== 'Healthcare Clinic' ? clinicName : 'ClinicPilot'}
           </h1>
         </div>
       </div>

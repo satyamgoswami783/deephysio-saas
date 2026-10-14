@@ -22,7 +22,7 @@ const Login = () => {
   const [forgotPassword, setForgotPassword] = useState('');
   const [forgotConfirm, setForgotConfirm] = useState('');
   const [forgotLoading, setForgotLoading] = useState(false);
-  const [clinicProfile, setClinicProfile] = useState({ clinicName: 'Healthcare Clinic', logoDataUrl: '' });
+  const [clinicProfile, setClinicProfile] = useState({ clinicName: 'ClinicPilot', logoDataUrl: '' });
   const [isBrandingLoaded, setIsBrandingLoaded] = useState(false);
 
   useEffect(() => {
@@ -194,10 +194,10 @@ const Login = () => {
               </div>
 
               <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight leading-none text-center notranslate" translate="no">
-                {clinicProfile.clinicName || 'Healthcare Clinic'}
+                {clinicProfile.clinicName && clinicProfile.clinicName !== 'Healthcare Clinic' && clinicProfile.clinicName !== 'DeePhysio Clinic' ? clinicProfile.clinicName : 'ClinicPilot'}
               </h1>
               <h2 className="text-[10px] font-black text-slate-400 tracking-[0.25em] uppercase mt-2.5 text-center">
-                Secure Portal Dashboard
+                Secure Clinical Portal
               </h2>
             </div>
 
@@ -213,7 +213,7 @@ const Login = () => {
                         type="email" 
                         required
                         className="w-full pl-11 pr-4 py-3 bg-slate-50/50 border border-slate-100/80 rounded-xl text-[12px] font-bold text-slate-700 outline-none focus:ring-4 focus:ring-clinicPrimary/10 transition-all placeholder:text-slate-200" 
-                        placeholder="identity@deephysio.com" 
+                        placeholder="identity@clinicpilotdemo.store" 
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                       />

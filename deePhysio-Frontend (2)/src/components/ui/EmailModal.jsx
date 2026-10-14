@@ -316,9 +316,9 @@ const renderPreview = (type, data, patient) => {
       {/* Clinic Header */}
       <div className="flex justify-between items-start border-b-2 border-slate-100 pb-8">
         <div className="flex items-center gap-4">
-          <div className="w-12 h-12 bg-[#2EA7B8] rounded-2xl flex items-center justify-center text-white font-black text-xl shadow-lg">DP</div>
+          <div className="w-12 h-12 bg-[#2EA7B8] rounded-2xl flex items-center justify-center text-white font-black text-xl shadow-lg">CP</div>
           <div>
-            <h1 className="text-2xl font-black text-slate-900 tracking-tighter uppercase leading-none">DeePhysio</h1>
+            <h1 className="text-2xl font-black text-slate-900 tracking-tighter uppercase leading-none">ClinicPilot</h1>
             <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mt-2">Clinical Documentation Node</p>
           </div>
         </div>

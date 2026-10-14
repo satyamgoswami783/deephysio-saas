@@ -71,7 +71,7 @@ const plans = [
     description: 'Cutting-edge AI automation and intelligence for busy practices.',
     features: [
       'Up to 15 Staff Members',
-      'Kiaan AI Clinical Notes Assistant',
+      'ClinicPilot AI Clinical Notes Assistant',
       'Telehealth & Video Consultations',
       'Automated Patient Follow-ups',
       'Custom Intake Form Builder',
@@ -269,7 +269,7 @@ const SubscriptionPlansPage = () => {
               Subscription & Upgrade Plans
             </h1>
             <p className="text-slate-500 text-sm font-medium mt-1">
-              Select the best tier for your clinic. Upgrade anytime to get higher staff capacity, Kiaan AI automation, and priority support.
+              Select the best tier for your clinic. Upgrade anytime to get higher staff capacity, ClinicPilot AI automation, and priority support.
             </p>
           </div>
 

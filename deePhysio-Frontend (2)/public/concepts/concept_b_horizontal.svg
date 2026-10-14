@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 160" width="512" height="512">
+  <defs>
+    <linearGradient id="cB_h_tealGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06B6D4" />
+      <stop offset="60%" stop-color="#2EA7B8" />
+      <stop offset="100%" stop-color="#10B981" />
+    </linearGradient>
+    <linearGradient id="cB_h_crossGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="100%" stop-color="#2EA7B8" />
+    </linearGradient>
+  </defs>
+
+  <g transform="translate(18, 16) scale(0.25)">
+    <path d="M 380 140 C 260 50, 120 80, 75 185 C 38 270, 60 365, 130 420 C 210 480, 325 470, 390 410 C 404 397, 404 376, 390 362 C 376 348, 355 348, 342 360 C 295 405, 205 410, 145 365 C 95 325, 80 250, 110 185 C 145 105, 255 80, 345 145 C 360 156, 380 152, 392 138 C 400 126, 395 110, 380 140 Z" fill="url(#cB_h_tealGrad)" />
+    <path d="M 185 200 C 185 180, 200 165, 220 165 L 285 165 C 345 165, 385 200, 385 250 C 385 300, 345 335, 285 335 L 235 335 L 235 385 C 235 402, 222 415, 205 415 C 188 415, 185 402, 185 385 Z" fill="#0F172A" />
+    <g transform="translate(285, 250)">
+      <path d="M -12 -34 L 12 -34 C 15 -34, 18 -31, 18 -28 L 18 -12 L 34 -12 C 37 -12, 40 -9, 40 -6 L 40 6 C 40 9, 37 12, 34 12 L 18 12 L 18 28 C 18 31, 15 34, 12 34 L -12 34 C -15 34, -18 31, -18 28 L -18 12 L -34 12 C -37 12, -40 9, -40 6 L -40 -6 C -40 -9, -37 -12, -34 -12 L -18 -12 L -18 -28 C -18 -31, -15 -34, -12 -34 Z" fill="url(#cB_h_crossGrad)" />
+      <polygon points="0,-14 14,0 0,14 -14,0" fill="#FFFFFF" />
+    </g>
+    <path d="M 410 240 L 440 250 L 410 260 Z" fill="#06B6D4" opacity="0.9" />
+  </g>
+
+  <!-- WORDMARK: ClinicPilot -->
+  <g transform="translate(165, 52)">
+    <text x="0" y="44" font-family="'Plus Jakarta Sans', 'Outfit', system-ui, -apple-system, sans-serif" font-size="48" font-weight="900" fill="#0F172A" letter-spacing="-0.035em">
+      Clinic<tspan fill="#2EA7B8">Pilot</tspan>
+    </text>
+    <text x="4" y="74" font-family="'Plus Jakarta Sans', 'Outfit', system-ui, -apple-system, sans-serif" font-size="12" font-weight="800" fill="#64748B" letter-spacing="0.28em">
+      INTELLIGENT HEALTHCARE PLATFORM
+    </text>
+  </g>
+</svg>

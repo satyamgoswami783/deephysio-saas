@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 120" width="520" height="120">
+  <defs>
+    <linearGradient id="hTealGrad_light" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06B6D4" />
+      <stop offset="100%" stop-color="#2EA7B8" />
+    </linearGradient>
+  </defs>
+
+  <!-- SYMBOL (Scaled cleanly to 96x96, centered vertically) -->
+  <g transform="translate(12, 12) scale(0.1875)">
+    <!-- C ARC -->
+    <path 
+      d="M 360 142 C 285 82, 165 82, 108 156 C 56 222, 56 290, 108 356 C 165 430, 285 430, 360 370 C 374 358, 374 338, 360 326 C 346 314, 326 314, 312 325 C 255 368, 175 360, 140 315 C 106 270, 106 242, 140 197 C 175 152, 255 144, 312 187 C 326 198, 346 198, 360 186 C 374 174, 374 154, 360 142 Z"
+      fill="url(#hTealGrad_light)"
+    />
+    <!-- P STEM + LOOP -->
+    <path 
+      d="M 210 162 C 210 146, 223 134, 239 134 L 300 134 C 356 134, 396 172, 396 226 C 396 280, 356 318, 300 318 L 258 318 L 258 382 C 258 398, 245 410, 229 410 C 213 410, 210 398, 210 382 Z"
+      fill="#0F172A"
+    />
+    <!-- CENTERED CROSS -->
+    <g transform="translate(300, 226)">
+      <rect x="-6" y="-22" width="12" height="44" rx="4" fill="#2EA7B8" />
+      <rect x="-22" y="-6" width="44" height="12" rx="4" fill="#2EA7B8" />
+    </g>
+  </g>
+
+  <!-- WORDMARK: ClinicPilot (Clean, modern geometric sans) -->
+  <g transform="translate(124, 76)">
+    <text font-family="'Plus Jakarta Sans', 'Outfit', system-ui, -apple-system, sans-serif" font-size="48" font-weight="900" letter-spacing="-0.03em">
+      <tspan fill="#0F172A">Clinic</tspan><tspan fill="#2EA7B8">Pilot</tspan>
+    </text>
+  </g>
+</svg>

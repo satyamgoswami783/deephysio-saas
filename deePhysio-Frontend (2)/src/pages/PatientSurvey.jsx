@@ -91,7 +91,7 @@ const PatientSurvey = () => {
                 {/* NPS Recommendation */}
                 <Card className="p-10 border-none shadow-premium bg-slate-900 text-white rounded-[40px] relative overflow-hidden group">
                     <div className="relative z-10 space-y-10">
-                        <h3 className="text-[14px] font-black text-slate-400 uppercase tracking-[0.2em] text-center">How likely are you to recommend Deephysio to others?</h3>
+                        <h3 className="text-[14px] font-black text-slate-400 uppercase tracking-[0.2em] text-center">How likely are you to recommend ClinicPilot to others?</h3>
                         <div className="flex justify-between gap-1 sm:gap-3">
                             {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => (
                                 <button

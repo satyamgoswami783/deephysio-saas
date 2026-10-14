@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ClinicPilot — Brand Identity &amp; Logo Concepts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2EA7B8;
+      --primary-dark: #1E6C77;
+      --cyan: #06B6D4;
+      --emerald: #10B981;
+      --navy: #0F172A;
+      --dark-card: #141C2E;
+      --slate-border: #1E293B;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0B0F19;
+      color: #F8FAFC;
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      padding: 40px 24px 80px;
+      line-height: 1.5;
+    }
+    .container {
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background: rgba(46, 167, 184, 0.15);
+      border: 1px solid rgba(46, 167, 184, 0.4);
+      border-radius: 9999px;
+      color: #38BDF8;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: 40px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #FFFFFF 30%, #94A3B8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .subtitle {
+      font-size: 16px;
+      color: #94A3B8;
+      max-width: 760px;
+      margin: 0 auto;
+      font-weight: 500;
+    }
+    .notice-card {
+      background: rgba(46, 167, 184, 0.08);
+      border: 1px solid rgba(46, 167, 184, 0.25);
+      border-radius: 16px;
+      padding: 16px 24px;
+      margin: 24px auto 48px;
+      max-width: 860px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .notice-card p {
+      font-size: 13px;
+      color: #CBD5E1;
+      font-weight: 600;
+    }
+    .notice-tag {
+      background: #2EA7B8;
+      color: #0F172A;
+      font-weight: 900;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .concepts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+      gap: 32px;
+      margin-bottom: 64px;
+    }
+    .concept-card {
+      background: var(--dark-card);
+      border: 2px solid var(--slate-border);
+      border-radius: 28px;
+      padding: 32px;
+      display: flex;
+      flex-col;
+      gap: 24px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+    .concept-tag {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .concept-a .concept-tag { background: rgba(6, 182, 212, 0.2); color: #38BDF8; }
+    .concept-b .concept-tag { background: rgba(16, 185, 129, 0.2); color: #34D399; }
+    .concept-c .concept-tag { background: rgba(46, 167, 184, 0.2); color: #2EA7B8; }
+    .concept-title {
+      font-size: 24px;
+      font-weight: 900;
+      color: #FFFFFF;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+    .concept-desc {
+      font-size: 13px;
+      color: #94A3B8;
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+    .preview-box {
+      border-radius: 18px;
+      padding: 20px 24px;
+      margin-bottom: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .preview-box.light {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+    }
+    .preview-box.dark {
+      background: #0B1120;
+      border: 1px solid #1E293B;
+    }
+    .preview-label {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    .preview-box.light .preview-label { color: #64748B; }
+    .preview-box.dark .preview-label { color: #475569; }
+    .hero-symbol-box {
+      background: #0A0E1A;
+      border: 1px solid #1E293B;
+      border-radius: 20px;
+      padding: 28px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .hero-symbol-box svg {
+      width: 150px;
+      height: 150px;
+      display: block;
+      margin: 12px auto;
+    }
+    .scale-row {
+      background: #070A12;
+      border: 1px solid #1E293B;
+      border-radius: 16px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+    }
+    .scale-row-title {
+      font-size: 10px;
+      font-weight: 800;
+      color: #64748B;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .scale-items {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .scale-icon {
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0F172A;
+      border: 1px solid #334155;
+    }
+    .scale-icon.light {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+    }
+    .features-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 12.5px;
+      color: #CBD5E1;
+      padding-top: 12px;
+      border-top: 1px solid #1E293B;
+    }
+    .features-list li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .check {
+      color: #2EA7B8;
+      font-weight: 900;
+    }
+    .full-board-section {
+      background: #141C2E;
+      border: 2px solid #1E293B;
+      border-radius: 28px;
+      padding: 32px;
+      text-align: center;
+      margin-top: 48px;
+    }
+    .full-board-section h2 {
+      font-size: 22px;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+    .full-board-section p {
+      font-size: 14px;
+      color: #94A3B8;
+      margin-bottom: 24px;
+    }
+    .full-board-section img {
+      max-width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.5);
+      border: 1px solid #334155;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="badge">DESIGN SHOWCASE</div>
+      <h1>ClinicPilot — Logo Redesign Concepts</h1>
+      <p class="subtitle">
+        Review three distinct, original design directions for the international clinical management SaaS platform. All DEMO badges have been removed. Every concept features the letter C, letter P, and subtle clinical cross.
+      </p>
+    </div>
+
+    <div class="notice-card">
+      <p>⚠️ <strong>Approval Gate:</strong> This is the initial concept comparison. No frontend code or assets have been permanently modified yet. Please review the 3 directions below and choose your preferred concept (A, B, or C).</p>
+      <div class="notice-tag">Waiting for Approval</div>
+    </div>
+
+    <div class="concepts-grid">
+      <!-- CONCEPT A -->
+      <div class="concept-card concept-a">
+        <div>
+          <span class="concept-tag">Concept A</span>
+          <h2 class="concept-title">Geometric CP Monogram</h2>
+          <p class="concept-desc">
+            Interlocking architectural CP geometry with a precision-cut negative-space medical cross and directional pulse nodes. Modern, bold, confident.
+          </p>
+        </div>
+
+        <div class="preview-box light">
+          <span class="preview-label">Horizontal Logo (Light Background)</span>
+          <img src="/concepts/concept_a_horizontal.svg" alt="Concept A Light" style="height: 56px; width: auto; object-fit: contain;" />
+        </div>
+
+        <div class="preview-box dark">
+          <span class="preview-label">Horizontal Logo (Dark Background)</span>
+          <svg viewBox="0 0 680 160" style="height: 56px; width: auto;">
+            <use href="#concept_a_dark_symbol" />
+            <g transform="translate(18, 16) scale(0.25)">
+              <path d="M 370 120 C 270 50, 140 70, 90 160 C 45 235, 45 305, 90 375 C 145 460, 275 470, 365 410 C 382 398, 386 376, 374 360 C 362 344, 340 340, 324 350 C 255 395, 160 385, 125 330 C 95 285, 95 245, 125 200 C 160 145, 255 135, 325 180 C 340 190, 362 186, 374 170 C 386 154, 382 132, 370 120 Z" fill="url(#cA_page_grad1)" />
+              <path d="M 190 170 C 190 150, 206 134, 226 134 L 300 134 C 365 134, 415 175, 415 240 C 415 305, 365 346, 300 346 L 250 346 L 250 395 C 250 415, 234 430, 214 430 C 194 430, 190 415, 190 395 Z" fill="#FFFFFF" />
+              <g transform="translate(305, 240)">
+                <rect x="-42" y="-42" width="84" height="84" rx="20" fill="#0B1120" />
+                <path d="M -10 -30 L 10 -30 C 13 -30, 15 -28, 15 -25 L 15 -10 L 30 -10 C 33 -10, 35 -8, 35 -5 L 35 5 C 35 8, 33 10, 30 10 L 15 10 L 15 25 C 15 28, 13 30, 10 30 L -10 30 C -13 30, -15 28, -15 25 L -15 10 L -30 10 C -33 10, -35 8, -35 5 L -35 -5 C -35 -8, -33 -10, -30 -10 L -15 -10 L -15 -25 C -15 -28, -13 -30, -10 -30 Z" fill="url(#cA_page_grad1)" />
+                <circle cx="0" cy="0" r="5" fill="#FFFFFF" />
+              </g>
+              <circle cx="370" cy="120" r="16" fill="#06B6D4" />
+              <circle cx="365" cy="410" r="16" fill="#10B981" />
+            </g>
+            <g transform="translate(165, 52)">
+              <text x="0" y="44" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="48" font-weight="900" fill="#FFFFFF" letter-spacing="-0.035em">
+                Clinic<tspan fill="#2EA7B8">Pilot</tspan>
+              </text>
+              <text x="4" y="74" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="12" font-weight="800" fill="#94A3B8" letter-spacing="0.28em">
+                CLINICAL MANAGEMENT OS
+              </text>
+            </g>
+          </svg>
+        </div>
+
+        <div class="hero-symbol-box">
+          <span class="preview-label" style="color: #64748B;">Hero Emblem</span>
+          <img src="/concepts/concept_a_symbol.svg" alt="Concept A Symbol" style="width: 140px; height: 140px; margin: 12px auto; display: block;" />
+        </div>
+
+        <div class="scale-row">
+          <div class="scale-row-title">App Icon Scalability (64px, 48px, 32px, 24px)</div>
+          <div class="scale-items">
+            <div class="scale-icon light" style="width: 64px; height: 64px;"><img src="/concepts/concept_a_symbol.svg" style="width: 52px; height: 52px;" /></div>
+            <div class="scale-icon" style="width: 64px; height: 64px;"><img src="/concepts/concept_a_symbol.svg" style="width: 52px; height: 52px;" /></div>
+            <div class="scale-icon" style="width: 48px; height: 48px;"><img src="/concepts/concept_a_symbol.svg" style="width: 38px; height: 38px;" /></div>
+            <div class="scale-icon" style="width: 32px; height: 32px;"><img src="/concepts/concept_a_symbol.svg" style="width: 26px; height: 26px;" /></div>
+            <div class="scale-icon" style="width: 24px; height: 24px;"><img src="/concepts/concept_a_symbol.svg" style="width: 18px; height: 18px;" /></div>
+          </div>
+        </div>
+
+        <ul class="features-list">
+          <li><span class="check">✓</span> Silicon Valley SaaS architectural aesthetic</li>
+          <li><span class="check">✓</span> High-contrast geometric negative-space medical cross</li>
+          <li><span class="check">✓</span> Instant silhouette recognition without circular backing</li>
+        </ul>
+      </div>
+
+      <!-- CONCEPT B -->
+      <div class="concept-card concept-b">
+        <div>
+          <span class="concept-tag">Concept B</span>
+          <h2 class="concept-title">Clinical Tech Beacon</h2>
+          <p class="concept-desc">
+            Futuristic clinical navigation symbol with dynamic radar sweep C, forward-moving clinical fin P, and integrated pilot direction diamond.
+          </p>
+        </div>
+
+        <div class="preview-box light">
+          <span class="preview-label">Horizontal Logo (Light Background)</span>
+          <img src="/concepts/concept_b_horizontal.svg" alt="Concept B Light" style="height: 56px; width: auto; object-fit: contain;" />
+        </div>
+
+        <div class="preview-box dark">
+          <span class="preview-label">Horizontal Logo (Dark Background)</span>
+          <svg viewBox="0 0 680 160" style="height: 56px; width: auto;">
+            <g transform="translate(18, 16) scale(0.25)">
+              <path d="M 380 140 C 260 50, 120 80, 75 185 C 38 270, 60 365, 130 420 C 210 480, 325 470, 390 410 C 404 397, 404 376, 390 362 C 376 348, 355 348, 342 360 C 295 405, 205 410, 145 365 C 95 325, 80 250, 110 185 C 145 105, 255 80, 345 145 C 360 156, 380 152, 392 138 C 400 126, 395 110, 380 140 Z" fill="url(#cB_page_grad1)" />
+              <path d="M 185 200 C 185 180, 200 165, 220 165 L 285 165 C 345 165, 385 200, 385 250 C 385 300, 345 335, 285 335 L 235 335 L 235 385 C 235 402, 222 415, 205 415 C 188 415, 185 402, 185 385 Z" fill="#FFFFFF" />
+              <g transform="translate(285, 250)">
+                <path d="M -12 -34 L 12 -34 C 15 -34, 18 -31, 18 -28 L 18 -12 L 34 -12 C 37 -12, 40 -9, 40 -6 L 40 6 C 40 9, 37 12, 34 12 L 18 12 L 18 28 C 18 31, 15 34, 12 34 L -12 34 C -15 34, -18 31, -18 28 L -18 12 L -34 12 C -37 12, -40 9, -40 6 L -40 -6 C -40 -9, -37 -12, -34 -12 L -18 -12 L -18 -28 C -18 -31, -15 -34, -12 -34 Z" fill="#38BDF8" />
+                <polygon points="0,-14 14,0 0,14 -14,0" fill="#FFFFFF" />
+              </g>
+              <path d="M 410 240 L 440 250 L 410 260 Z" fill="#06B6D4" opacity="0.9" />
+            </g>
+            <g transform="translate(165, 52)">
+              <text x="0" y="44" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="48" font-weight="900" fill="#FFFFFF" letter-spacing="-0.035em">
+                Clinic<tspan fill="#2EA7B8">Pilot</tspan>
+              </text>
+              <text x="4" y="74" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="12" font-weight="800" fill="#94A3B8" letter-spacing="0.28em">
+                INTELLIGENT HEALTHCARE PLATFORM
+              </text>
+            </g>
+          </svg>
+        </div>
+
+        <div class="hero-symbol-box">
+          <span class="preview-label" style="color: #64748B;">Hero Emblem</span>
+          <img src="/concepts/concept_b_symbol.svg" alt="Concept B Symbol" style="width: 140px; height: 140px; margin: 12px auto; display: block;" />
+        </div>
+
+        <div class="scale-row">
+          <div class="scale-row-title">App Icon Scalability (64px, 48px, 32px, 24px)</div>
+          <div class="scale-items">
+            <div class="scale-icon light" style="width: 64px; height: 64px;"><img src="/concepts/concept_b_symbol.svg" style="width: 52px; height: 52px;" /></div>
+            <div class="scale-icon" style="width: 64px; height: 64px;"><img src="/concepts/concept_b_symbol.svg" style="width: 52px; height: 52px;" /></div>
+            <div class="scale-icon" style="width: 48px; height: 48px;"><img src="/concepts/concept_b_symbol.svg" style="width: 38px; height: 38px;" /></div>
+            <div class="scale-icon" style="width: 32px; height: 32px;"><img src="/concepts/concept_b_symbol.svg" style="width: 26px; height: 26px;" /></div>
+            <div class="scale-icon" style="width: 24px; height: 24px;"><img src="/concepts/concept_b_symbol.svg" style="width: 18px; height: 18px;" /></div>
+          </div>
+        </div>
+
+        <ul class="features-list">
+          <li><span class="check">✓</span> Dynamic forward guidance and AI pilot direction</li>
+          <li><span class="check">✓</span> Radiant teal-to-emerald gradient transitions</li>
+          <li><span class="check">✓</span> Kinetic health-tech innovation symbol</li>
+        </ul>
+      </div>
+
+      <!-- CONCEPT C -->
+      <div class="concept-card concept-c">
+        <div>
+          <span class="concept-tag">Concept C</span>
+          <h2 class="concept-title">Minimal Healthcare SaaS Mark</h2>
+          <p class="concept-desc">
+            Swiss minimalist continuous geometric ribbon. Pure, understated, enterprise-level global healthcare authority with central medical cross.
+          </p>
+        </div>
+
+        <div class="preview-box light">
+          <span class="preview-label">Horizontal Logo (Light Background)</span>
+          <img src="/concepts/concept_c_horizontal.svg" alt="Concept C Light" style="height: 56px; width: auto; object-fit: contain;" />
+        </div>
+
+        <div class="preview-box dark">
+          <span class="preview-label">Horizontal Logo (Dark Background)</span>
+          <svg viewBox="0 0 680 160" style="height: 56px; width: auto;">
+            <g transform="translate(18, 16) scale(0.25)">
+              <path d="M 360 140 C 280 80, 160 80, 105 155 C 55 220, 55 292, 105 357 C 160 432, 280 432, 360 372 C 375 360, 375 338, 360 325 C 345 312, 325 312, 310 324 C 250 368, 170 360, 135 315 C 100 270, 100 242, 135 197 C 170 152, 250 144, 310 188 C 325 200, 345 200, 360 187 C 375 174, 375 152, 360 140 Z" fill="url(#cC_page_grad1)" />
+              <path d="M 210 160 C 210 145, 222 132, 238 132 L 295 132 C 350 132, 390 168, 390 220 C 390 272, 350 308, 295 308 L 255 308 L 255 380 C 255 395, 242 408, 228 408 C 214 408, 210 395, 210 380 Z" fill="#FFFFFF" />
+              <g transform="translate(295, 220)">
+                <path d="M -8 -24 L 8 -24 C 10 -24, 12 -22, 12 -20 L 12 -8 L 24 -8 C 26 -8, 28 -6, 28 -4 L 28 4 C 28 6, 26 8, 24 8 L 12 8 L 12 20 C 12 22, 10 24, 8 24 L -8 24 C -10 24, -12 22, -12 20 L -12 8 L -24 8 C -26 8, -28 6, -28 4 L -28 -4 C -28 -6, -26 -8, -24 -8 L -12 -8 L -12 -20 C -12 -22, -10 -24, -8 -24 Z" fill="#2EA7B8" />
+              </g>
+            </g>
+            <g transform="translate(165, 52)">
+              <text x="0" y="44" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="48" font-weight="900" fill="#FFFFFF" letter-spacing="-0.035em">
+                Clinic<tspan fill="#2EA7B8">Pilot</tspan>
+              </text>
+              <text x="4" y="74" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="12" font-weight="800" fill="#94A3B8" letter-spacing="0.28em">
+                ENTERPRISE CLINICAL SUITE
+              </text>
+            </g>
+          </svg>
+        </div>
+
+        <div class="hero-symbol-box">
+          <span class="preview-label" style="color: #64748B;">Hero Emblem</span>
+          <img src="/concepts/concept_c_symbol.svg" alt="Concept C Symbol" style="width: 140px; height: 140px; margin: 12px auto; display: block;" />
+        </div>
+
+        <div class="scale-row">
+          <div class="scale-row-title">App Icon Scalability (64px, 48px, 32px, 24px)</div>
+          <div class="scale-items">
+            <div class="scale-icon light" style="width: 64px; height: 64px;"><img src="/concepts/concept_c_symbol.svg" style="width: 52px; height: 52px;" /></div>
+            <div class="scale-icon" style="width: 64px; height: 64px;"><img src="/concepts/concept_c_symbol.svg" style="width: 52px; height: 52px;" /></div>
+            <div class="scale-icon" style="width: 48px; height: 48px;"><img src="/concepts/concept_c_symbol.svg" style="width: 38px; height: 38px;" /></div>
+            <div class="scale-icon" style="width: 32px; height: 32px;"><img src="/concepts/concept_c_symbol.svg" style="width: 26px; height: 26px;" /></div>
+            <div class="scale-icon" style="width: 24px; height: 24px;"><img src="/concepts/concept_c_symbol.svg" style="width: 18px; height: 18px;" /></div>
+          </div>
+        </div>
+
+        <ul class="features-list">
+          <li><span class="check">✓</span> Calm, international medical institutional trust</li>
+          <li><span class="check">✓</span> Ultra-clean geometric ribbons with zero visual noise</li>
+          <li><span class="check">✓</span> Crisp at 16px/24px favicon size with maximum legibility</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- FULL MASTER BOARD RENDER -->
+    <div class="full-board-section">
+      <h2>Complete High-Resolution Comparison Board</h2>
+      <p>Rendered at 1600x1320 high-fidelity PNG resolution for side-by-side design inspection.</p>
+      <img src="/logo_comparison_board.png" alt="Complete Comparison Board" />
+    </div>
+  </div>
+
+  <!-- Shared Gradients for Embedded SVGs -->
+  <svg style="display: none;">
+    <defs>
+      <linearGradient id="cA_page_grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#06B6D4" />
+        <stop offset="50%" stop-color="#2EA7B8" />
+        <stop offset="100%" stop-color="#0D9488" />
+      </linearGradient>
+      <linearGradient id="cB_page_grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#06B6D4" />
+        <stop offset="60%" stop-color="#2EA7B8" />
+        <stop offset="100%" stop-color="#10B981" />
+      </linearGradient>
+      <linearGradient id="cC_page_grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#06B6D4" />
+        <stop offset="100%" stop-color="#2EA7B8" />
+      </linearGradient>
+    </defs>
+  </svg>
+</body>
+</html>

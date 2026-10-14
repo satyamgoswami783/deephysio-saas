@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { fetchApi } from '../config/api';
-import { FaInstagram, FaFacebookF, FaLinkedinIn, FaGlobe, FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
+import { FaInstagram, FaFacebookF, FaLinkedinIn, FaGlobe, FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaAndroid, FaApple } from 'react-icons/fa';
 import LanguageSwitcher from '../components/LanguageSwitcher';
 import { 
   FiActivity, 
@@ -89,19 +89,13 @@ const LandingPage = () => {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
-            <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate('/')}>
-              <motion.div 
-                whileHover={{ rotate: 360 }}
-                transition={{ duration: 0.8 }}
-                className="w-11 h-11 rounded-full bg-slate-950 p-1 border-2 border-slate-700 shadow-md flex items-center justify-center flex-shrink-0 overflow-hidden"
-              >
-                <img 
-                  src={clinicProfile.logoDataUrl || "/logo.png"} 
-                  alt="KT Logo" 
-                  className="w-full h-full object-contain" 
-                />
-              </motion.div>
-              <span className="font-black text-lg tracking-tight text-slate-800 leading-none">Healthcare<br/><span className="text-clinicPrimary text-sm">Clinic</span></span>
+            <div className="flex items-center gap-2.5 cursor-pointer" onClick={() => navigate('/')}>
+              <img 
+                src={clinicProfile.logoDataUrl || "/logo-icon.svg"} 
+                alt="ClinicPilot Logo" 
+                className="w-9 h-9 object-contain" 
+              />
+              <span className="font-black text-2xl tracking-tight text-slate-900 leading-none">Clinic<span className="text-clinicPrimary">Pilot</span></span>
             </div>
             <div className="hidden md:flex space-x-8">
               <a href="#features" onClick={(e) => handleSmoothScroll(e, 'features')} className="text-slate-600 hover:text-clinicPrimary transition-colors text-sm font-bold">Features</a>
@@ -147,14 +141,12 @@ const LandingPage = () => {
               variants={staggerContainer}
             >
               <motion.div variants={fadeIn} className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-slate-900/5 border border-slate-200 mb-6 shadow-sm">
-                <div className="w-5 h-5 rounded-full bg-slate-950 p-0.5 flex items-center justify-center flex-shrink-0 overflow-hidden">
-                  <img 
-                    src={clinicProfile.logoDataUrl || "/logo.png"} 
-                    alt="KT Logo" 
-                    className="w-full h-full object-contain" 
-                  />
-                </div>
-                <span className="text-xs font-bold text-slate-800 uppercase tracking-wider">Healthcare Management Platform</span>
+                <img 
+                  src={clinicProfile.logoDataUrl || "/logo-icon.svg"} 
+                  alt="ClinicPilot Logo" 
+                  className="w-4 h-4 object-contain" 
+                />
+                <span className="text-xs font-bold text-slate-800 uppercase tracking-wider">ClinicPilot Clinical Management</span>
               </motion.div>
               <motion.h1 variants={fadeIn} className="text-5xl lg:text-7xl font-black text-slate-900 leading-tight mb-6 tracking-tight">
                 Transform Your <br />
@@ -183,6 +175,37 @@ const LandingPage = () => {
                 >
                   View Pricing
                 </motion.a>
+              </motion.div>
+
+              {/* App Download Buttons (Reference design) */}
+              <motion.div variants={fadeIn} className="flex flex-wrap sm:flex-nowrap items-center gap-3.5 mb-8 max-w-lg">
+                {/* Android APK Button */}
+                <div 
+                  className="flex items-center gap-3.5 bg-white hover:bg-slate-50 border border-slate-200/90 rounded-2xl px-4 py-3 shadow-sm hover:shadow-md hover:border-slate-300 transition-all cursor-pointer group flex-1 min-w-[170px]"
+                  title="Download Android APK"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-100 text-emerald-600 flex items-center justify-center text-xl shrink-0 group-hover:scale-105 transition-transform shadow-sm">
+                    <FaAndroid />
+                  </div>
+                  <div className="flex flex-col text-left">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">DOWNLOAD FOR</span>
+                    <span className="text-sm font-black text-slate-900 leading-tight">Android APK</span>
+                  </div>
+                </div>
+
+                {/* iOS / Apple Button */}
+                <div 
+                  className="flex items-center gap-3.5 bg-white hover:bg-slate-50 border border-slate-200/90 rounded-2xl px-4 py-3 shadow-sm hover:shadow-md hover:border-slate-300 transition-all cursor-pointer group flex-1 min-w-[170px]"
+                  title="Download for iOS / Apple"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200 text-slate-900 flex items-center justify-center text-xl shrink-0 group-hover:scale-105 transition-transform shadow-sm">
+                    <FaApple />
+                  </div>
+                  <div className="flex flex-col text-left">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">DOWNLOAD FOR</span>
+                    <span className="text-sm font-black text-slate-900 leading-tight">iOS / Apple</span>
+                  </div>
+                </div>
               </motion.div>
 
               <motion.div variants={fadeIn} className="flex flex-wrap gap-x-6 gap-y-3 text-sm font-bold text-slate-700 mb-10">
@@ -435,7 +458,7 @@ const LandingPage = () => {
               { name: '7-Day Free Trial', price: '₹0', period: 'per week', features: ['7 Days full feature trial access', 'Duration: 7 Days'], button: 'Get Started', bg: 'bg-slate-800' },
               { name: 'Starter', price: '₹999', period: 'per month', features: ['Essential clinic management features', 'Duration: Monthly'], button: 'Get Started', bg: 'bg-slate-800' },
               { name: 'Standard', price: '₹1,299', period: 'per month', features: ['Complete features for growing clinics', 'Duration: Monthly'], button: 'Get Started', bg: 'bg-white', border: 'border-white', badge: 'Most Popular', text: 'text-slate-900', priceColor: 'text-slate-900', featureColor: 'text-slate-700', scale: true },
-              { name: 'Pro', price: '₹1,499', period: 'per month', features: ['Kiaan AI Assistant & AI Features', 'Advanced features and priority support', 'Duration: Monthly'], button: 'Get Started', bg: 'bg-slate-800' },
+              { name: 'Pro', price: '₹1,499', period: 'per month', features: ['ClinicPilot AI Assistant & AI Features', 'Advanced features and priority support', 'Duration: Monthly'], button: 'Get Started', bg: 'bg-slate-800' },
               { name: 'Custom Plan', price: 'Custom', period: 'Tailored to your clinic', features: ['SaaS with customization', 'Personal domain', 'Personal branding', 'AI and automation'], button: 'Get Started', bg: 'bg-slate-800' }
             ].map((plan, idx) => (
               <motion.div 
@@ -516,32 +539,21 @@ const LandingPage = () => {
             
             {/* Column 1: Brand & Social */}
             <div className="space-y-6">
-              <div className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-full bg-slate-900 p-1 border border-slate-700 flex items-center justify-center flex-shrink-0 overflow-hidden">
-                  <img 
-                    src={clinicProfile.logoDataUrl || "/logo.png"} 
-                    alt="KT Logo" 
-                    className="w-full h-full object-contain" 
-                  />
-                </div>
-                <div className="font-black text-xl tracking-tight text-white flex items-center gap-2">
-                   <span>KIAAN <span className="text-teal-400">TECHNOLOGY</span></span>
+              <div className="flex items-center gap-2.5">
+                <img 
+                  src={clinicProfile.logoDataUrl || "/logo-icon.svg"} 
+                  alt="ClinicPilot Logo" 
+                  className="w-9 h-9 object-contain" 
+                />
+                <div className="font-black text-2xl tracking-tight leading-none text-white">
+                  Clinic<span className="text-teal-400">Pilot</span>
                 </div>
               </div>
               <p className="text-sm text-slate-400 leading-relaxed font-medium pr-4">
-                The ultimate management solution for modern medical clinics, physiotherapy centers, and healthcare providers.
+                The ultimate clinical management SaaS solution for modern medical practices, rehabilitation centers, and healthcare providers.
               </p>
               <div className="flex items-center gap-3 pt-2">
-                <a href="https://www.instagram.com/kiaan_technology4/" target="_blank" rel="noreferrer" className="w-9 h-9 rounded-full bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 flex items-center justify-center text-white hover:scale-110 transition-transform shadow-lg">
-                  <FaInstagram size={16} />
-                </a>
-                <a href="#" target="_blank" rel="noreferrer" className="w-9 h-9 rounded-full bg-[#1877F2] flex items-center justify-center text-white hover:scale-110 transition-transform shadow-lg">
-                  <FaFacebookF size={16} />
-                </a>
-                <a href="https://www.linkedin.com/company/kiaan-technology-pvt-ltd/posts/?feedView=all" target="_blank" rel="noreferrer" className="w-9 h-9 rounded-full bg-[#0A66C2] flex items-center justify-center text-white hover:scale-110 transition-transform shadow-lg">
-                  <FaLinkedinIn size={15} />
-                </a>
-                <a href="https://kiaantechnology.com/" target="_blank" rel="noreferrer" className="w-9 h-9 rounded-full bg-teal-500 flex items-center justify-center text-white hover:scale-110 transition-transform shadow-lg">
+                <a href="https://clinicpilotdemo.store" target="_blank" rel="noreferrer" className="w-9 h-9 rounded-full bg-teal-500 flex items-center justify-center text-white hover:scale-110 transition-transform shadow-lg" title="ClinicPilot">
                   <FaGlobe size={16} />
                 </a>
               </div>
@@ -586,7 +598,7 @@ const LandingPage = () => {
                 </li>
                 <li className="flex items-center gap-3">
                   <FaEnvelope className="text-teal-500 flex-shrink-0" size={16} />
-                  <a href="mailto:info@kiaantechnology.com" className="hover:text-teal-400 transition-colors">info@kiaantechnology.com</a>
+                  <a href="mailto:support@clinicpilotdemo.store" className="hover:text-teal-400 transition-colors">support@clinicpilotdemo.store</a>
                 </li>
               </ul>
             </div>
@@ -595,11 +607,11 @@ const LandingPage = () => {
 
           {/* Footer Bottom */}
           <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-bold text-slate-500">
-            <p>© {new Date().getFullYear()} Kiaan Tech Craft. All rights reserved. Powered by <a href="https://kiaantechnology.com/" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-teal-400">Kiaan Technology</a>.</p>
+            <p>© {new Date().getFullYear()} ClinicPilot. All rights reserved.</p>
             <div className="flex gap-6">
-              <a href="#" className="hover:text-teal-400 transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-teal-400 transition-colors">Terms & Conditions</a>
-              <a href="#" className="hover:text-teal-400 transition-colors">Documentation</a>
+              <a href="/privacy-policy" className="hover:text-teal-400 transition-colors">Privacy Policy</a>
+              <a href="/terms-and-conditions" className="hover:text-teal-400 transition-colors">Terms & Conditions</a>
+              <a href="/account-deletion" className="hover:text-teal-400 transition-colors">Account Deletion</a>
             </div>
           </div>
         </div>

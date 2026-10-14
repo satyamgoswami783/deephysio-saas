@@ -11,7 +11,7 @@ export class ShareService {
     if (isNative) {
       try {
         await Share.share({
-          title: title || 'deePhysio Clinical Record',
+          title: title || 'ClinicPilot Clinical Record',
           text: text || '',
           url: url || window.location.href,
           dialogTitle: dialogTitle || 'Share with...'
@@ -29,7 +29,7 @@ export class ShareService {
     if (typeof navigator !== 'undefined' && navigator.share) {
       try {
         await navigator.share({
-          title: title || 'deePhysio',
+          title: title || 'ClinicPilot',
           text: text || '',
           url: url || window.location.href
         });

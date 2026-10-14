@@ -74,7 +74,7 @@ const plansData = [
     description: 'Cutting-edge AI automation, telehealth, and intelligence for busy clinics.',
     features: [
       'Up to 15 Staff Members',
-      'Kiaan AI Clinical Notes Assistant',
+      'ClinicPilot AI Clinical Notes Assistant',
       'Telehealth & Video Consultations',
       'Automated Patient Follow-ups',
       'Custom Intake Form Builder',
@@ -289,7 +289,7 @@ const UpgradePlanModal = ({ isOpen, onClose, currentPlan, onPlanUpdated }) => {
               Choose the Perfect Plan for Your Clinic
             </h2>
             <p className="text-slate-300 text-xs sm:text-sm mt-1.5 font-normal leading-relaxed">
-              Seamlessly upgrade from Free Trial to unlock unlimited patients, automated appointment reminders, and Kiaan AI clinical automation.
+              Seamlessly upgrade from Free Trial to unlock unlimited patients, automated appointment reminders, and ClinicPilot AI clinical automation.
             </p>
 
             {/* Monthly / Annual Billing Toggle */}

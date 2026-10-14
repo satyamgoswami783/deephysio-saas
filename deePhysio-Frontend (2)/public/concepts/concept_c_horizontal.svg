@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 160" width="512" height="512">
+  <defs>
+    <linearGradient id="cC_h_tealGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06B6D4" />
+      <stop offset="100%" stop-color="#2EA7B8" />
+    </linearGradient>
+  </defs>
+
+  <g transform="translate(18, 16) scale(0.25)">
+    <path d="M 360 140 C 280 80, 160 80, 105 155 C 55 220, 55 292, 105 357 C 160 432, 280 432, 360 372 C 375 360, 375 338, 360 325 C 345 312, 325 312, 310 324 C 250 368, 170 360, 135 315 C 100 270, 100 242, 135 197 C 170 152, 250 144, 310 188 C 325 200, 345 200, 360 187 C 375 174, 375 152, 360 140 Z" fill="url(#cC_h_tealGrad)" />
+    <path d="M 210 160 C 210 145, 222 132, 238 132 L 295 132 C 350 132, 390 168, 390 220 C 390 272, 350 308, 295 308 L 255 308 L 255 380 C 255 395, 242 408, 228 408 C 214 408, 210 395, 210 380 Z" fill="#0F172A" />
+    <g transform="translate(295, 220)">
+      <path d="M -8 -24 L 8 -24 C 10 -24, 12 -22, 12 -20 L 12 -8 L 24 -8 C 26 -8, 28 -6, 28 -4 L 28 4 C 28 6, 26 8, 24 8 L 12 8 L 12 20 C 12 22, 10 24, 8 24 L -8 24 C -10 24, -12 22, -12 20 L -12 8 L -24 8 C -26 8, -28 6, -28 4 L -28 -4 C -28 -6, -26 -8, -24 -8 L -12 -8 L -12 -20 C -12 -22, -10 -24, -8 -24 Z" fill="#2EA7B8" />
+    </g>
+  </g>
+
+  <!-- WORDMARK: ClinicPilot -->
+  <g transform="translate(165, 52)">
+    <text x="0" y="44" font-family="'Plus Jakarta Sans', 'Outfit', system-ui, -apple-system, sans-serif" font-size="48" font-weight="900" fill="#0F172A" letter-spacing="-0.035em">
+      Clinic<tspan fill="#2EA7B8">Pilot</tspan>
+    </text>
+    <text x="4" y="74" font-family="'Plus Jakarta Sans', 'Outfit', system-ui, -apple-system, sans-serif" font-size="12" font-weight="800" fill="#64748B" letter-spacing="0.28em">
+      ENTERPRISE CLINICAL SUITE
+    </text>
+  </g>
+</svg>

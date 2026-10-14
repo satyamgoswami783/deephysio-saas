@@ -15,32 +15,32 @@ const CLINICAL_TEMPLATES = [
   {
     id: 'appt_reminder',
     name: 'Appointment Reminder & Details',
-    subject: 'Appointment Reminder - DeePhysio Clinic',
-    body: 'Dear {name},\n\nThis is a friendly reminder of your upcoming physiotherapy appointment at DeePhysio Clinic.\n\nDate: [Date]\nTime: [Time]\nClinician: [Therapist Name]\nLocation: Main Clinical Wing\n\nPlease arrive 10 minutes prior to your scheduled session. If you need to reschedule, kindly notify us at least 24 hours in advance.\n\nWarm regards,\nDeePhysio Clinic Team'
+    subject: 'Appointment Reminder - ClinicPilot',
+    body: 'Dear {name},\n\nThis is a friendly reminder of your upcoming clinical appointment at ClinicPilot.\n\nDate: [Date]\nTime: [Time]\nClinician: [Clinician Name]\nLocation: Main Clinical Wing\n\nPlease arrive 10 minutes prior to your scheduled session. If you need to reschedule, kindly notify us at least 24 hours in advance.\n\nWarm regards,\nClinicPilot Team'
   },
   {
     id: 'invoice_notice',
     name: 'Invoice & Payment Receipt',
-    subject: 'Clinical Invoice & Payment Summary - DeePhysio Clinic',
-    body: 'Dear {name},\n\nThank you for choosing DeePhysio Clinic. Please find the details regarding your clinical session and pending invoice summary below.\n\nInvoice Number: [INV-XXXX]\nAmount Due: [Amount]\nServices: Physiotherapy Rehabilitation Session\n\nPlease let our billing team know if you have questions regarding health insurance claims or payments.\n\nSincerely,\nDeePhysio Accounts Team'
+    subject: 'Clinical Invoice & Payment Summary - ClinicPilot',
+    body: 'Dear {name},\n\nThank you for choosing ClinicPilot. Please find the details regarding your clinical session and pending invoice summary below.\n\nInvoice Number: [INV-XXXX]\nAmount Due: [Amount]\nServices: Clinical Rehabilitation Session\n\nPlease let our billing team know if you have questions regarding health insurance claims or payments.\n\nSincerely,\nClinicPilot Accounts Team'
   },
   {
     id: 'exercise_protocol',
     name: 'Home Exercise Protocol & Instructions',
-    subject: 'Your Prescribed Physiotherapy Exercise Program',
-    body: 'Dear {name},\n\nFollowing your clinical assessment, here is your customized home exercise protocol designed to support your rehabilitation.\n\nProtocol Guidelines:\n1. Perform exercises twice daily in a comfortable, controlled range.\n2. Hydrate well and maintain recommended posture.\n3. If you experience sharp pain or discomfort, pause and contact us immediately.\n\nConsistency is key to optimal recovery. We look forward to reviewing your progress at your next appointment!\n\nBest regards,\nYour Physiotherapy Team\nDeePhysio Clinic'
+    subject: 'Your Prescribed Clinical Exercise Program',
+    body: 'Dear {name},\n\nFollowing your clinical assessment, here is your customized home exercise protocol designed to support your rehabilitation.\n\nProtocol Guidelines:\n1. Perform exercises twice daily in a comfortable, controlled range.\n2. Hydrate well and maintain recommended posture.\n3. If you experience sharp pain or discomfort, pause and contact us immediately.\n\nConsistency is key to optimal recovery. We look forward to reviewing your progress at your next appointment!\n\nBest regards,\nYour Clinical Team\nClinicPilot'
   },
   {
     id: 'progress_checkin',
     name: 'Clinical Recovery & Progress Check-in',
-    subject: 'Post-Treatment Follow-up - DeePhysio Clinic',
-    body: 'Dear {name},\n\nWe wanted to check in on how you are feeling following your recent physiotherapy session at DeePhysio Clinic.\n\nHow is your pain level and mobility today? Please reply directly to this email or call our desk if you have any questions or require any adjustments to your rehabilitation plan.\n\nWarm regards,\nDeePhysio Clinical Care'
+    subject: 'Post-Treatment Follow-up - ClinicPilot',
+    body: 'Dear {name},\n\nWe wanted to check in on how you are feeling following your recent clinical session at ClinicPilot.\n\nHow is your pain level and mobility today? Please reply directly to this email or call our desk if you have any questions or require any adjustments to your rehabilitation plan.\n\nWarm regards,\nClinicPilot Clinical Care'
   },
   {
     id: 'general_notice',
     name: 'General Clinic Information / Announcement',
-    subject: 'Clinical Update from DeePhysio Healthcare',
-    body: 'Dear {name},\n\nWe are pleased to share an update regarding services and appointment availability at DeePhysio Clinic.\n\nOur team remains committed to providing you with the highest standard of physical therapy and rehabilitative care.\n\nFeel free to reach out to us whenever you require assistance.\n\nKind regards,\nDeePhysio Clinic Management'
+    subject: 'Clinical Update from ClinicPilot',
+    body: 'Dear {name},\n\nWe are pleased to share an update regarding services and appointment availability at ClinicPilot.\n\nOur team remains committed to providing you with the highest standard of clinical and rehabilitative care.\n\nFeel free to reach out to us whenever you require assistance.\n\nKind regards,\nClinicPilot Clinic Management'
   }
 ];
 
