@@ -7,7 +7,7 @@ import {
   FaSms, FaEnvelopeOpenText, FaVideo, FaTools, FaStripe, FaPaypal,
   FaFileSignature, FaShieldAlt, FaDatabase, FaBell, FaHeartbeat, FaUsers,
   FaThLarge, FaClinicMedical, FaUserCircle, FaClipboardCheck, FaCommentDots,
-  FaCreditCard, FaChartBar, FaBars, FaSignOutAlt, FaUserPlus, FaCalendarCheck, FaHourglassHalf, FaSync,
+  FaCreditCard, FaChartBar, FaBars, FaTimes, FaSignOutAlt, FaUserPlus, FaCalendarCheck, FaHourglassHalf, FaSync,
   FaCogs, FaHeadset, FaMoneyCheck
 } from 'react-icons/fa';
 import ClinicalNoteIcon from './ui/ClinicalNoteIcon';
@@ -269,7 +269,7 @@ const Sidebar = ({ isOpen, toggleSidebar, onLogout, userRole, userData: propUser
   const [manuallyCollapsed, setManuallyCollapsed] = useState(null);
 
   const closeSidebarOnMobile = () => {
-    if (typeof window !== 'undefined' && window.innerWidth < 768 && isOpen) {
+    if (typeof window !== 'undefined' && window.innerWidth < 1024 && isOpen) {
       toggleSidebar();
     }
   };
@@ -288,8 +288,8 @@ const Sidebar = ({ isOpen, toggleSidebar, onLogout, userRole, userData: propUser
 
   return (
     <aside className={cn(
-      "fixed inset-y-0 left-0 z-10 md:relative md:translate-x-0 transition-all duration-500 ease-in-out bg-[#0f172a] text-slate-300 overflow-hidden flex flex-col shadow-2xl border-r border-slate-800/50",
-      isOpen ? "translate-x-0 w-60" : "-translate-x-full md:w-16"
+      "fixed inset-y-0 left-0 z-40 md:relative md:translate-x-0 transition-all duration-500 ease-in-out bg-[#0f172a] text-slate-300 overflow-hidden flex flex-col shadow-2xl border-r border-slate-800/50",
+      isOpen ? "translate-x-0 w-64 md:w-60" : "-translate-x-full md:w-16"
     )}>
       {/* Header / Logo Section - Vertical Layout */}
       <div className={cn(
@@ -297,7 +297,7 @@ const Sidebar = ({ isOpen, toggleSidebar, onLogout, userRole, userData: propUser
         isOpen ? "flex-col items-center pt-8 pb-6" : "items-center justify-center"
       )}>
 
-        {/* Toggle Button (Top Right when open, Centered when closed) */}
+        {/* Desktop Toggle Button */}
         <button
           onClick={toggleSidebar}
           className={cn(
@@ -309,6 +309,18 @@ const Sidebar = ({ isOpen, toggleSidebar, onLogout, userRole, userData: propUser
         >
           {isOpen ? <FaChevronRight className="w-3.5 h-3.5 rotate-180" /> : <FaBars className="w-4 h-4" />}
         </button>
+
+        {/* Mobile Close Button (when drawer is open on mobile/tablet) */}
+        {isOpen && (
+          <button
+            onClick={toggleSidebar}
+            className="lg:hidden absolute top-3 right-3 w-8 h-8 flex items-center justify-center text-slate-400 hover:text-white bg-slate-800/80 rounded-lg border border-slate-700/60 active:scale-95 transition-all z-20"
+            title="Close menu"
+            type="button"
+          >
+            <FaTimes className="w-3.5 h-3.5" />
+          </button>
+        )}
 
         {/* Branding Components */}
         <div className={cn(

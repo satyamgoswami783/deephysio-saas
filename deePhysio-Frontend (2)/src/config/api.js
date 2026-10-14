@@ -5,10 +5,17 @@ const API_BASE_URL = (
 ).replace(/\/$/, '');
 
 /**
+ * Get active auth token from session or persistent local storage
+ */
+export const getAuthToken = () => {
+  return sessionStorage.getItem("token") || localStorage.getItem("token");
+};
+
+/**
  * Get standard auth headers with Bearer token
  */
 export const getAuthHeaders = () => {
-  const token = sessionStorage.getItem("token");
+  const token = getAuthToken();
   const isValidToken = token && token !== 'null' && token !== 'undefined';
 
   return {

@@ -7,8 +7,8 @@ import BillingDashboard from './BillingDashboard';
 import { Navigate } from 'react-router-dom';
 
 const DashboardRouter = () => {
-  const userStr = sessionStorage.getItem('deephysio_user');
-  const roleStr = sessionStorage.getItem('deephysio_role');
+  const userStr = sessionStorage.getItem('deephysio_user') || localStorage.getItem('deephysio_user');
+  const roleStr = sessionStorage.getItem('deephysio_role') || localStorage.getItem('deephysio_role');
   let userRole = roleStr?.toLowerCase() || 'therapist';
   
   if (userStr) {

@@ -1,0 +1,28 @@
+{
+  "appId": "com.kiaan.deephysio",
+  "appName": "deePhysio",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https",
+    "cleartext": false
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 3000,
+      "launchAutoHide": false,
+      "backgroundColor": "#2EA7B8",
+      "androidSplashResourceName": "splash",
+      "androidScaleType": "CENTER_CROP",
+      "showSpinner": false,
+      "splashFullScreen": true,
+      "splashImmersive": true
+    },
+    "StatusBar": {
+      "style": "DARK",
+      "backgroundColor": "#2EA7B8"
+    },
+    "PushNotifications": {
+      "presentationOptions": ["badge", "sound", "alert"]
+    }
+  }
+}

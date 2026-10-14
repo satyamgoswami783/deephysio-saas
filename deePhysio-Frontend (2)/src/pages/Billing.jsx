@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { FaPlus, FaSearch, FaDownload, FaFileInvoice, FaPrint, FaTrashAlt, FaWallet, FaChartLine, FaPercentage, FaReceipt, FaRegClock, FaEnvelope } from 'react-icons/fa';
+import { FaPlus, FaSearch, FaDownload, FaFileInvoice, FaPrint, FaTrashAlt, FaWallet, FaChartLine, FaPercentage, FaReceipt, FaRegClock, FaEnvelope, FaShareAlt } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
+import { ShareService } from '../mobile/share/ShareService';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
 import Modal from '../components/ui/Modal';
@@ -31,28 +32,48 @@ const Billing = () => {
   const invoiceRef = useRef(null);
   const [scaleFactor, setScaleFactor] = useState(1);
 
-  // Dynamic Scale-to-Fit for One-Screen Preview
+  // Dynamic Scale-to-Fit for Preview (Accounts for both width and height)
   useEffect(() => {
     const handleScale = () => {
       if (!selectedInvoice || !invoiceRef.current) return;
 
       const viewportHeight = window.innerHeight;
-      const targetHeight = viewportHeight - 180; // Margin for toolbar + padding
+      const targetHeight = viewportHeight - 200; // Margin for toolbar + padding
       const naturalHeight = invoiceRef.current.scrollHeight || 1000;
 
-      const newScale = Math.min(1, targetHeight / naturalHeight);
-      setScaleFactor(newScale);
+      const viewportWidth = window.innerWidth;
+      const targetWidth = Math.max(280, viewportWidth - (viewportWidth < 640 ? 32 : 80));
+      const naturalWidth = 800; // Fixed invoice template width
+
+      const scaleY = Math.min(1, targetHeight / naturalHeight);
+      const scaleX = Math.min(1, targetWidth / naturalWidth);
+      const newScale = Math.min(scaleX, scaleY);
+      setScaleFactor(Math.max(0.35, newScale));
     };
 
     if (selectedInvoice) {
       window.addEventListener('resize', handleScale);
       handleScale();
-      // Delay to ensure DOM is rendered
       setTimeout(handleScale, 50);
     }
 
     return () => window.removeEventListener('resize', handleScale);
   }, [selectedInvoice]);
+
+  const handleShareInvoice = async () => {
+    if (!selectedInvoice) return;
+    try {
+      const displayId = getInvoiceDisplayNumber(selectedInvoice, selectedInvoice.id);
+      await ShareService.share({
+        title: `Invoice ${displayId}`,
+        text: `Clinical Invoice ${displayId} for ${selectedInvoice.patient} - Total: ${selectedInvoice.amount}`,
+        dialogTitle: 'Share Clinical Invoice'
+      });
+      showToast('Invoice shared successfully.', 'success');
+    } catch (err) {
+      console.warn('Share error:', err);
+    }
+  };
 
   // Helper: capture the invoice element as a high-res canvas (temporarily resets scale)
   const captureInvoice = async () => {
@@ -490,7 +511,7 @@ const Billing = () => {
         {selectedInvoice && (
           <div className="flex flex-col h-full max-h-[calc(100vh-120px)] overflow-hidden">
             {/* Action Bar (Pinned) */}
-            <div className="flex items-center justify-between pb-6 border-b border-slate-100 no-print bg-white z-50 shrink-0">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 sm:pb-6 border-b border-slate-100 no-print bg-white z-50 shrink-0 gap-3">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center font-black">DP</div>
                 <div>
@@ -498,17 +519,18 @@ const Billing = () => {
                   <h3 className="text-sm font-black text-slate-900 uppercase tracking-tight">{getInvoiceDisplayNumber(selectedInvoice, selectedInvoice.id)}</h3>
                 </div>
               </div>
-              <div className="flex items-center gap-2">
-                <Button variant="secondary" className="h-10 px-6 rounded-xl text-[10px] uppercase tracking-widest font-black flex items-center gap-2 border-slate-200" onClick={handleDownloadPDF} leftIcon={<FaDownload size={12} />}>Download PDF</Button>
-                <Button variant="secondary" className="h-10 px-6 rounded-xl text-[10px] uppercase tracking-widest font-black flex items-center gap-2 border-slate-200" onClick={handlePrint} leftIcon={<FaPrint size={12} />}>Print</Button>
+              <div className="flex flex-wrap items-center gap-2">
+                <Button variant="secondary" className="h-9 sm:h-10 px-3 sm:px-5 rounded-xl text-[10px] uppercase tracking-widest font-black flex items-center gap-1.5 border-slate-200" onClick={handleDownloadPDF} leftIcon={<FaDownload size={11} />}>PDF</Button>
+                <Button variant="secondary" className="h-9 sm:h-10 px-3 sm:px-5 rounded-xl text-[10px] uppercase tracking-widest font-black flex items-center gap-1.5 border-slate-200 text-clinicPrimary" onClick={handleShareInvoice} leftIcon={<FaShareAlt size={11} />}>Share</Button>
+                <Button variant="secondary" className="h-9 sm:h-10 px-3 sm:px-5 rounded-xl text-[10px] uppercase tracking-widest font-black flex items-center gap-1.5 border-slate-200" onClick={handlePrint} leftIcon={<FaPrint size={11} />}>Print</Button>
                 {can('billing.manage') && (
-                  <Button variant="secondary" className="h-10 px-6 rounded-xl text-[10px] uppercase tracking-widest font-black flex items-center gap-2 border-rose-100 text-rose-400 hover:bg-rose-50 hover:text-rose-500" onClick={() => { const invId = selectedInvoice.id; setSelectedInvoice(null); setDeleteConfirm(invId); }} leftIcon={<FaTrashAlt size={12} />}>Purge Record</Button>
+                  <Button variant="secondary" className="h-9 sm:h-10 px-3 sm:px-5 rounded-xl text-[10px] uppercase tracking-widest font-black flex items-center gap-1.5 border-rose-100 text-rose-400 hover:bg-rose-50 hover:text-rose-500" onClick={() => { const invId = selectedInvoice.id; setSelectedInvoice(null); setDeleteConfirm(invId); }} leftIcon={<FaTrashAlt size={11} />}>Purge</Button>
                 )}
               </div>
             </div>
 
             {/* Scaleable Preview Area */}
-            <div className="flex-1 flex justify-center items-start pt-6 overflow-hidden bg-slate-50/50 rounded-b-3xl">
+            <div className="flex-1 flex justify-center items-start pt-6 overflow-x-auto overflow-y-auto bg-slate-50/50 rounded-b-3xl">
               <div
                 style={{
                   transform: `scale(${scaleFactor})`,

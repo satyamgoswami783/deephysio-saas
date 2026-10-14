@@ -1,16 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FaPaperclip, FaPlus, FaSearch, FaFilePdf, FaFileImage, FaFileWord, FaDownload, FaTrash, FaCheck, FaCloudUploadAlt } from 'react-icons/fa';
+import { FaPaperclip, FaPlus, FaSearch, FaFilePdf, FaFileImage, FaFileWord, FaDownload, FaTrash, FaCheck, FaCloudUploadAlt, FaCamera } from 'react-icons/fa';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
 import Modal from '../components/ui/Modal';
 import { fetchApi } from '../config/api';
 import { useToast } from '../context/ToastContext';
+import { CameraService } from '../mobile/camera/CameraService';
 
 const Attachments = () => {
   const [files, setFiles] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
-  const [newFile, setNewFile] = useState({ name: '', patient: '', type: 'PDF', fileObject: null });
+  const [newFile, setNewFile] = useState({ name: '', patient: '', type: 'PDF', fileObject: null, dataUrl: null });
   const [patients, setPatients] = useState([]);
   const fileInputRef = useRef(null);
 
@@ -92,13 +93,35 @@ const Attachments = () => {
     }
   };
 
+  const handleCapturePhoto = async () => {
+    try {
+      const photo = await CameraService.takePhoto({ quality: 85 });
+      if (photo && (photo.dataUrl || photo.path)) {
+        const defaultName = `Scan_${new Date().toISOString().slice(0, 10)}_${Date.now().toString().slice(-4)}.jpg`;
+        setNewFile({
+          name: defaultName,
+          patient: patients[0]?.name || '',
+          type: 'Image',
+          fileObject: null,
+          dataUrl: photo.dataUrl || photo.path
+        });
+        setIsUploadModalOpen(true);
+      }
+    } catch (err) {
+      console.warn('Camera capture cancelled or failed:', err);
+      showToast('Camera capture cancelled or unavailable.', 'info');
+    }
+  };
+
   const handleUpload = async () => {
     if (!newFile.name) return;
     
     try {
       const sizeStr = newFile.fileObject 
         ? (newFile.fileObject.size / (1024 * 1024)).toFixed(1) + ' MB'
-        : (Math.random() * (5 - 0.5) + 0.5).toFixed(1) + ' MB';
+        : newFile.dataUrl 
+          ? (Math.round((newFile.dataUrl.length * 0.75) / 1024) / 1024).toFixed(1) + ' MB'
+          : (Math.random() * (5 - 0.5) + 0.5).toFixed(1) + ' MB';
 
       const selectedPatient = patients.find(p => p.name === newFile.patient);
       
@@ -121,7 +144,8 @@ const Attachments = () => {
            patient: newFile.patient,
            type: response.data.type,
            date: new Date(response.data.upload_date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
-           size: response.data.size
+           size: response.data.size,
+           dataUrl: newFile.dataUrl
         };
         setFiles([uploaded, ...files]);
         showToast('Document synchronized successfully.', 'success');
@@ -130,27 +154,36 @@ const Attachments = () => {
        showToast('Failed to upload document metadata.', 'error');
     } finally {
        setIsUploadModalOpen(false);
-       setNewFile({ name: '', patient: patients[0]?.name || '', type: 'PDF', fileObject: null });
+       setNewFile({ name: '', patient: patients[0]?.name || '', type: 'PDF', fileObject: null, dataUrl: null });
     }
   };
 
   const handleDownload = (file) => {
-    // Simulated download
-    const link = document.createElement('a');
-    link.href = '#';
-    link.setAttribute('download', file.name);
-    document.body.appendChild(link);
-    link.click();
-    if (link.parentNode) {
-      link.parentNode.removeChild(link);
+    if (file.dataUrl) {
+      const link = document.createElement('a');
+      link.href = file.dataUrl;
+      link.setAttribute('download', file.name || 'attachment.jpg');
+      document.body.appendChild(link);
+      link.click();
+      if (link.parentNode) link.parentNode.removeChild(link);
+      showToast(`Downloaded: ${file.name}`, 'success');
+      return;
     }
-    
-    // Feedback
-    const notifyElement = document.createElement('div');
-    notifyElement.className = 'fixed bottom-10 right-10 bg-gray-900 text-white px-6 py-4 rounded-2xl shadow-2xl font-black uppercase tracking-widest text-[10px] z-[9999] animate-bounce';
-    notifyElement.innerText = `Synchronizing: ${file.name} (Decrypted)`;
-    document.body.appendChild(notifyElement);
-    setTimeout(() => notifyElement.remove(), 3000);
+
+    if (file.fileUrl || file.file_url) {
+      const link = document.createElement('a');
+      link.href = file.fileUrl || file.file_url;
+      link.setAttribute('download', file.name || 'document');
+      link.setAttribute('target', '_blank');
+      link.setAttribute('rel', 'noopener noreferrer');
+      document.body.appendChild(link);
+      link.click();
+      if (link.parentNode) link.parentNode.removeChild(link);
+      return;
+    }
+
+    // Backend Prisma attachment table stores record metadata (no binary file blob URL)
+    showToast(`Archive record: "${file.name}" (${file.size || 'Metadata'}).`, 'info');
   };
 
   const filteredFiles = files.filter(f => 
@@ -191,12 +224,21 @@ const Attachments = () => {
           <h1 className="text-xl font-black text-gray-900 tracking-tighter uppercase leading-none">Documents & Attachments</h1>
           <p className="text-base font-bold text-gray-400 mt-1 uppercase tracking-widest">Manage clinical reports, scans, and signed forms.</p>
         </div>
-        <button 
-          onClick={() => fileInputRef.current.click()}
-          className="btn-primary flex items-center gap-2 text-base uppercase tracking-widest shadow-lg "
-        >
-          <FaCloudUploadAlt size={14}/> Upload File
-        </button>
+        <div className="flex items-center gap-2">
+          <button 
+            onClick={handleCapturePhoto}
+            className="btn-secondary flex items-center gap-2 text-base uppercase tracking-widest shadow-md"
+            title="Scan document or take photo"
+          >
+            <FaCamera size={14}/> Take Photo
+          </button>
+          <button 
+            onClick={() => fileInputRef.current.click()}
+            className="btn-primary flex items-center gap-2 text-base uppercase tracking-widest shadow-lg"
+          >
+            <FaCloudUploadAlt size={14}/> Upload File
+          </button>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
@@ -306,12 +348,18 @@ const Attachments = () => {
       >
         <div className="space-y-6 p-2">
           <div className="p-4 bg-gray-50 rounded-2xl border border-gray-100 flex items-center gap-4">
-            <div className="w-12 h-12 rounded-xl bg-white shadow-sm flex items-center justify-center text-clinicPrimary">
-              {getFileIcon(newFile.type)}
+            <div className="w-12 h-12 rounded-xl bg-white shadow-sm flex items-center justify-center text-clinicPrimary overflow-hidden">
+              {newFile.dataUrl ? (
+                <img src={newFile.dataUrl} alt="Preview" className="w-full h-full object-cover" />
+              ) : (
+                getFileIcon(newFile.type)
+              )}
             </div>
-            <div>
-              <p className="text-base font-black text-gray-900 leading-none mb-1">{newFile.name}</p>
-              <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Ready for secure upload</p>
+            <div className="min-w-0 flex-1">
+              <p className="text-base font-black text-gray-900 leading-none mb-1 truncate">{newFile.name}</p>
+              <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">
+                {newFile.dataUrl ? 'Captured Image Ready' : 'Ready for secure upload'}
+              </p>
             </div>
           </div>
 

@@ -137,7 +137,8 @@ const CalendarHeader = ({
             ))}
           </div>
 
-          <div className="flex shrink-0 bg-white rounded-xl p-1 border border-slate-200 shadow-sm">
+          {/* Slot density view toggle (desktop & tablet) */}
+          <div className="hidden sm:flex shrink-0 bg-white rounded-xl p-1 border border-slate-200 shadow-sm">
             {[
               { label: 'Compact', val: 100 },
               { label: 'Normal', val: 120 },

@@ -74,7 +74,7 @@ export const LanguageSwitcher = ({
       >
         <span className="text-base select-none leading-none">{activeLang.flag}</span>
         {!compact && (
-          <span className="font-bold text-[12px] tracking-tight text-slate-800">
+          <span className="font-bold text-[12px] tracking-tight text-slate-800 hidden sm:inline">
             {activeLang.nativeName}
           </span>
         )}

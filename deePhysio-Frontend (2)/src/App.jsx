@@ -1,5 +1,5 @@
 import React, { lazy, Suspense, useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import MainLayout from './layout/MainLayout';
 import ProtectedRoute from './components/ProtectedRoute';
 import Login from './pages/Login';
@@ -11,6 +11,22 @@ import { fetchApi } from './config/api';
 import { normalizeModule, readAllowedModules } from './config/modules';
 import { readAllowedActions, readEffectivePermissions } from './config/actions';
 import ErrorBoundary from './components/ErrorBoundary';
+
+// Mobile and PWA Components & Services
+import OfflineBanner from './mobile/network/OfflineBanner';
+import PwaUpdatePrompt from './pwa/PwaUpdatePrompt';
+import PwaInstallPrompt from './pwa/PwaInstallPrompt';
+import SplashManager from './mobile/splash/SplashManager';
+import DeepLinkService from './mobile/deeplink/DeepLinkService';
+import NotificationService from './mobile/notifications/NotificationService';
+import AppLifecycleService from './mobile/lifecycle/AppLifecycleService';
+import { PermissionModal } from './mobile/permissions/PermissionModal';
+import { permissionManager } from './mobile/permissions/PermissionManager';
+
+// Lazy load legal and compliance pages
+const PrivacyPolicy = lazy(() => import('./pages/legal/PrivacyPolicy'));
+const AccountDeletionPage = lazy(() => import('./pages/legal/AccountDeletionPage'));
+const TermsAndConditions = lazy(() => import('./pages/legal/TermsAndConditions'));
 
 // Lazy load all protected pages
 const LandingPage = lazy(() => import('./pages/LandingPage'));
@@ -99,23 +115,76 @@ const UserProfile = lazy(() => import('./pages/UserProfile'));
 
 function AppContent() {
   const location = useLocation();
+  const navigate = useNavigate();
+
   const [userRole, setUserRole] = useState(() => {
-    const role = sessionStorage.getItem('deephysio_role');
+    const role = sessionStorage.getItem('deephysio_role') || localStorage.getItem('deephysio_role');
     return (role && role !== 'null' && role !== 'undefined') ? role : null;
   });
   const [userData, setUserData] = useState(() => {
     try {
-      const user = sessionStorage.getItem('deephysio_user');
+      const user = sessionStorage.getItem('deephysio_user') || localStorage.getItem('deephysio_user');
       return user ? JSON.parse(user) : null;
     } catch (e) {
       return null;
     }
   });
 
+  const [permissionModalState, setPermissionModalState] = useState({
+    isOpen: false,
+    config: null,
+    onConfirm: null,
+    onCancel: null,
+    isPermanentlyDenied: false
+  });
+
+  useEffect(() => {
+    permissionManager.setModalHandler(({ config, onConfirm, onCancel, isPermanentlyDenied }) => {
+      setPermissionModalState({
+        isOpen: true,
+        config,
+        onConfirm: () => {
+          setPermissionModalState(prev => ({ ...prev, isOpen: false }));
+          if (onConfirm) onConfirm();
+        },
+        onCancel: () => {
+          setPermissionModalState(prev => ({ ...prev, isOpen: false }));
+          if (onCancel) onCancel();
+        },
+        isPermanentlyDenied: !!isPermanentlyDenied
+      });
+    });
+
+    return () => {
+      permissionManager.setModalHandler(null);
+    };
+  }, []);
+
+  // Native Mobile Lifecycle & Splash Synchronization
+  useEffect(() => {
+    SplashManager.setupNativeUI();
+    SplashManager.hideWhenReady(450);
+
+    // Initialize Deep Link listener and push notification tap routing
+    DeepLinkService.init((route) => {
+      if (route) navigate(route);
+    });
+
+    NotificationService.init((route) => {
+      if (route) navigate(route);
+    });
+
+    AppLifecycleService.init({
+      onResume: () => {
+        console.log('[App] Resumed from background. State preserved.');
+      }
+    });
+  }, [navigate]);
+
   // RE-FETCH ON MOUNT for permission sync
   useEffect(() => {
     const syncPermissions = async () => {
-      const token = sessionStorage.getItem('token');
+      const token = sessionStorage.getItem('token') || localStorage.getItem('token');
       if (token && userData?.id) {
         try {
           const res = await fetchApi('/users/me');
@@ -126,6 +195,8 @@ function AppContent() {
               // Update local storage and state with latest permissions
               sessionStorage.setItem('deephysio_user', JSON.stringify(latestUser));
               sessionStorage.setItem('deephysio_role', latestUser.role);
+              localStorage.setItem('deephysio_user', JSON.stringify(latestUser));
+              localStorage.setItem('deephysio_role', latestUser.role);
               setUserData(latestUser);
               setUserRole(latestUser.role);
             }
@@ -140,7 +211,7 @@ function AppContent() {
 
   // Re-sync userRole whenever the route changes
   useEffect(() => {
-    const role = sessionStorage.getItem('deephysio_role');
+    const role = sessionStorage.getItem('deephysio_role') || localStorage.getItem('deephysio_role');
     const isValidRole = role && role !== 'null' && role !== 'undefined';
 
     if (isValidRole && role !== userRole) {
@@ -149,8 +220,6 @@ function AppContent() {
       setUserRole(null);
     }
   }, [location.pathname, userRole]);
-
-
 
   const handleLogout = () => {
     import('./config/api').then(({ clearAllTenantState }) => {
@@ -191,7 +260,7 @@ function AppContent() {
       clearTimeout(timeoutId);
       timeoutId = setTimeout(() => {
         // If token exists, user is logged in, but inactive -> force logout
-        if (sessionStorage.getItem('token')) {
+        if (sessionStorage.getItem('token') || localStorage.getItem('token')) {
           handleLogout();
         }
       }, INACTIVITY_LIMIT_MS);
@@ -210,6 +279,15 @@ function AppContent() {
     };
   }, []);
 
+  const getStoredUser = () => {
+    try {
+      const userStr = sessionStorage.getItem('deephysio_user') || localStorage.getItem('deephysio_user');
+      return userStr ? JSON.parse(userStr) : null;
+    } catch (e) {
+      return null;
+    }
+  };
+
   /**
    * STRICT ROLE MATRIX
    * Admin: Full access
@@ -218,11 +296,8 @@ function AppContent() {
    * Billing: Invoices, Payments, Reports
    */
   const getAllowedModules = () => {
-    try {
-      const user = JSON.parse(sessionStorage.getItem('deephysio_user'));
-      return readAllowedModules(user, userRole);
-    } catch (e) {}
-    return readAllowedModules(null, userRole);
+    const user = getStoredUser();
+    return readAllowedModules(user, userRole);
   };
 
   const hasAccess = (menuName) => {
@@ -230,38 +305,26 @@ function AppContent() {
     return getAllowedModules().includes(normalizeModule(menuName));
   };
   const hasAction = (actionKey) => {
-    try {
-      const user = JSON.parse(sessionStorage.getItem('deephysio_user'));
-      return readAllowedActions(user, userRole).includes(actionKey);
-    } catch (e) {
-      return false;
-    }
+    const user = getStoredUser();
+    return readAllowedActions(user, userRole).includes(actionKey);
   };
   const hasPermission = (permissionKey) => {
-    try {
-      const user = JSON.parse(sessionStorage.getItem('deephysio_user'));
-      return readEffectivePermissions(user, userRole).includes(permissionKey);
-    } catch (e) {
-      return false;
-    }
+    const user = getStoredUser();
+    return readEffectivePermissions(user, userRole).includes(permissionKey);
   };
 
   const isCheckinOnlyMode = () => {
-    try {
-      const user = JSON.parse(sessionStorage.getItem('deephysio_user'));
-      const menus = readAllowedModules(user, userRole).map(normalizeModule);
-      const effectivePerms = readEffectivePermissions(user, userRole);
-      // Strict rule: only users explicitly restricted to Appointments module
-      // and lacking manage permission should be forced into check-in-only mode.
-      return (
-        menus.length === 1 &&
-        menus.includes('Appointments') &&
-        effectivePerms.includes('appointments.view') &&
-        !effectivePerms.includes('appointments.manage')
-      );
-    } catch (e) {
-      return false;
-    }
+    const user = getStoredUser();
+    const menus = readAllowedModules(user, userRole).map(normalizeModule);
+    const effectivePerms = readEffectivePermissions(user, userRole);
+    // Strict rule: only users explicitly restricted to Appointments module
+    // and lacking manage permission should be forced into check-in-only mode.
+    return (
+      menus.length === 1 &&
+      menus.includes('Appointments') &&
+      effectivePerms.includes('appointments.view') &&
+      !effectivePerms.includes('appointments.manage')
+    );
   };
 
   const getDefaultAuthorizedRoute = () => {
@@ -284,6 +347,16 @@ function AppContent() {
     <LanguageProvider>
       <ToastProvider>
         <ErrorBoundary>
+          <OfflineBanner />
+          <PwaInstallPrompt />
+          <PwaUpdatePrompt />
+          <PermissionModal
+            isOpen={permissionModalState.isOpen}
+            config={permissionModalState.config}
+            onConfirm={permissionModalState.onConfirm}
+            onCancel={permissionModalState.onCancel}
+            isPermanentlyDenied={permissionModalState.isPermanentlyDenied}
+          />
           <Suspense fallback={
             <div className="h-screen w-screen flex items-center justify-center bg-clinicLight">
               <div className="flex flex-col items-center gap-4">
@@ -298,6 +371,9 @@ function AppContent() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/access-denied" element={<AccessDenied />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+          <Route path="/account-deletion" element={<AccountDeletionPage />} />
           <Route
             element={
               <ProtectedRoute>

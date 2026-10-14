@@ -111,18 +111,18 @@ const Navbar = ({ toggleSidebar, onLogout, userRole, allowedModules = [] }) => {
   };
 
   return (
-    <header className="h-14 bg-slate-50/80 backdrop-blur-md px-4 md:px-10 flex items-center justify-between sticky top-0 z-50 transition-all duration-300 border-b border-slate-200/50">
-      <div className="flex items-center gap-6">
+    <header className="h-14 bg-slate-50/80 backdrop-blur-md px-2.5 sm:px-4 md:px-10 flex items-center justify-between sticky top-0 z-50 transition-all duration-300 border-b border-slate-200/50">
+      <div className="flex items-center gap-2 sm:gap-6">
         <button 
           onClick={toggleSidebar}
-          className="p-2.5 text-slate-500 hover:text-clinicPrimary bg-white rounded-xl shadow-soft active:scale-95 transition-all border border-slate-100 hover:border-clinicPrimary/30 hover:shadow-google lg:hidden"
+          className="p-2 sm:p-2.5 text-slate-500 hover:text-clinicPrimary bg-white rounded-xl shadow-soft active:scale-95 transition-all border border-slate-100 hover:border-clinicPrimary/30 hover:shadow-google lg:hidden"
         >
-          <FaBars size={18} />
+          <FaBars size={17} />
         </button>
       </div>
 
       {/* Profile / Actions */}
-      <div className="flex items-center gap-3 md:gap-6">
+      <div className="flex items-center gap-1.5 sm:gap-3 md:gap-6">
         {/* Multi-Language Dropdown Switcher */}
         <LanguageSwitcher />
 
@@ -130,9 +130,9 @@ const Navbar = ({ toggleSidebar, onLogout, userRole, allowedModules = [] }) => {
         <button
           onClick={() => navigate('/guide')}
           title="How to Use Software (Manual & Guide)"
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-200/80 text-xs font-bold transition-all shadow-xs cursor-pointer active:scale-95"
+          className="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-200/80 text-xs font-bold transition-all shadow-xs cursor-pointer active:scale-95"
         >
-          <FaBookOpen className="text-amber-600" size={13} />
+          <FaBookOpen className="text-amber-600" size={12} />
           <span className="hidden sm:inline">
             {language === 'hi' ? 'उपयोग गाइड' : 'How to Use'}
           </span>
@@ -145,13 +145,13 @@ const Navbar = ({ toggleSidebar, onLogout, userRole, allowedModules = [] }) => {
             setHasUnreadSupport(false);
           }}
           title={userRole === 'superadmin' ? "Support Desk (Tenant Queries)" : "Live SuperAdmin Chat Support"}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-200/80 text-xs font-bold transition-all shadow-xs cursor-pointer active:scale-95 group relative"
+          className="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-200/80 text-xs font-bold transition-all shadow-xs cursor-pointer active:scale-95 group relative"
         >
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
           </span>
-          <FaHeadset className="text-emerald-600 group-hover:scale-110 transition-transform" size={13} />
+          <FaHeadset className="text-emerald-600 group-hover:scale-110 transition-transform" size={12} />
           <span className="hidden sm:inline font-black">
             {userRole === 'superadmin'
               ? (language === 'hi' ? 'सपोर्ट डेस्क' : 'Support Desk')
@@ -162,7 +162,7 @@ const Navbar = ({ toggleSidebar, onLogout, userRole, allowedModules = [] }) => {
           )}
         </button>
 
-        <div ref={panelRef} className="flex items-center gap-1 md:gap-2 pr-3 md:pr-6 border-r border-slate-200 relative">
+        <div ref={panelRef} className="flex items-center gap-1 md:gap-2 pr-1.5 sm:pr-3 md:pr-6 border-r border-slate-200 relative">
           <button 
             onClick={() => togglePanel('notifications')}
             className={`relative p-2 rounded-xl transition-all active:scale-90 shadow-soft border border-transparent ${activePanel === 'notifications' ? 'bg-white text-clinicPrimary border-slate-100' : 'text-slate-400 hover:text-clinicPrimary hover:bg-white hover:border-slate-100'}`}
@@ -173,7 +173,7 @@ const Navbar = ({ toggleSidebar, onLogout, userRole, allowedModules = [] }) => {
 
           {/* Activity Panels */}
           {activePanel && (
-            <div className="absolute top-16 right-0 w-80 bg-white rounded-2xl shadow-google border border-slate-100 p-6 animate-in fade-in slide-in-from-top-2 duration-300">
+            <div className="absolute top-16 right-0 w-[calc(100vw-2.5rem)] max-w-sm sm:w-80 bg-white rounded-2xl shadow-google border border-slate-100 p-5 sm:p-6 animate-in fade-in slide-in-from-top-2 duration-300 z-50">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-[10px] font-bold text-slate-900 uppercase tracking-widest leading-none">{activePanel}</h3>
                 <button 

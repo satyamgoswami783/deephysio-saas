@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, Navigate } from 'react-router-dom';
+import { useNavigate, Navigate, Link } from 'react-router-dom';
 import { FaHeartbeat, FaChevronRight, FaShieldAlt, FaUser, FaFileInvoice, FaEnvelope, FaLock, FaArrowLeft } from 'react-icons/fa';
 import { useToast } from '../context/ToastContext';
 import { fetchApi, clearAllTenantState } from '../config/api';
@@ -46,8 +46,8 @@ const Login = () => {
 
   // If already logged in, redirect away from login page
   useEffect(() => {
-    const existingToken = sessionStorage.getItem('token');
-    if (existingToken) {
+    const existingToken = sessionStorage.getItem('token') || localStorage.getItem('token');
+    if (existingToken && existingToken !== 'null' && existingToken !== 'undefined') {
       navigate("/dashboard", { replace: true });
     }
   }, [navigate]);
@@ -98,6 +98,11 @@ const Login = () => {
         sessionStorage.setItem("token", token);
         sessionStorage.setItem("deephysio_user", JSON.stringify(user));
         sessionStorage.setItem("deephysio_role", user.role);
+
+        // Also persist to localStorage for native app & PWA restart continuity
+        localStorage.setItem("token", token);
+        localStorage.setItem("deephysio_user", JSON.stringify(user));
+        localStorage.setItem("deephysio_role", user.role);
 
         showToast('Access Granted. Welcome to DeePhysio.', 'success');
         
@@ -292,6 +297,16 @@ const Login = () => {
           <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-clinicSecondary/5 rounded-full blur-[60px]"></div>
         </div>
 
+        {/* Public Legal & Store Compliance Links */}
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs text-slate-400">
+          <Link to="/privacy-policy" className="hover:text-clinicPrimary transition-colors">Privacy Policy</Link>
+          <span>•</span>
+          <Link to="/terms-and-conditions" className="hover:text-clinicPrimary transition-colors">Terms of Service</Link>
+          <span>•</span>
+          <Link to="/account-deletion" className="hover:text-clinicPrimary transition-colors">Account Deletion</Link>
+          <span>•</span>
+          <Link to="/support" className="hover:text-clinicPrimary transition-colors">Support</Link>
+        </div>
 
       </div>
 

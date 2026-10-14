@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { FaShieldAlt, FaKey, FaClock, FaArrowLeft, FaTimes, FaLaptop, FaBan, FaCheckCircle, FaNetworkWired } from 'react-icons/fa';
+import { FaShieldAlt, FaKey, FaClock, FaArrowLeft, FaTimes, FaLaptop, FaBan, FaCheckCircle, FaNetworkWired, FaTrashAlt } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import Button from '../components/ui/Button';
 import { useToast } from '../context/ToastContext';
 import { fetchApi } from '../config/api';
+import DeleteAccountModal from '../components/account/DeleteAccountModal';
 
 const SecuritySettings = () => {
   const navigate = useNavigate();
@@ -21,7 +22,16 @@ const SecuritySettings = () => {
   const [isTerminating, setIsTerminating] = useState(false);
 
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [passwordForm, setPasswordForm] = useState({ current: '', new: '', confirm: '' });
+
+  const currentUser = (() => {
+    try {
+      return JSON.parse(sessionStorage.getItem('deephysio_user') || localStorage.getItem('deephysio_user') || '{}');
+    } catch (_) {
+      return {};
+    }
+  })();
 
   useEffect(() => {
     const load = async () => {
@@ -283,7 +293,35 @@ const SecuritySettings = () => {
           </select>
         </div>
 
+        {/* Danger Zone: Account Deletion (Google Play Compliance) */}
+        <div className="bg-rose-50/50 p-6 md:p-8 rounded-2xl border border-rose-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-6 transition-all">
+          <div className="flex items-start gap-4">
+             <div className="w-12 h-12 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center border border-rose-200 shrink-0">
+               <FaTrashAlt size={20} />
+             </div>
+             <div>
+               <h3 className="text-base font-bold text-rose-900 tracking-tight">Delete Account & Data</h3>
+               <p className="text-sm text-rose-700/80 mt-1 max-w-sm">
+                 Permanently delete your account credentials, sessions, and device tokens in accordance with privacy laws.
+               </p>
+             </div>
+          </div>
+          <Button
+            variant="secondary"
+            className="px-6 py-2.5 rounded-xl font-bold bg-white text-rose-600 border-rose-200 hover:bg-rose-100 hover:text-rose-700 w-full sm:w-auto shadow-sm"
+            onClick={() => setIsDeleteModalOpen(true)}
+          >
+            Delete Account
+          </Button>
+        </div>
+
       </div>
+
+      <DeleteAccountModal
+        isOpen={isDeleteModalOpen}
+        onClose={() => setIsDeleteModalOpen(false)}
+        userEmail={currentUser?.email || ''}
+      />
 
       <div className="mt-8 pt-4 flex justify-end">
          <Button variant="primary" className="px-8 rounded-xl font-bold shadow-sm" onClick={handleSaveSettings} disabled={isSaving}>

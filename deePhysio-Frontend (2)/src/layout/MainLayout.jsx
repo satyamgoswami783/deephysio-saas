@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
 import Navbar from '../components/Navbar';
+import MobileBottomNav from '../components/MobileBottomNav';
 import ErrorBoundary from '../components/ErrorBoundary';
 import { cn } from '../components/ui/Button';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -94,10 +95,10 @@ const MainLayout = ({ onLogout, userRole, setUserRole, userData, allowedModules 
 
   return (
     <div className="flex h-[100dvh] bg-slate-50 overflow-hidden relative">
-      {/* Mobile Sidebar Overlay - Only blocks if sidebar is open in mobile mode */}
+      {/* Mobile Sidebar Overlay */}
       <div
         className={cn(
-          "fixed inset-0 bg-slate-900/50 z-[5] md:hidden transition-all duration-300",
+          "fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-30 md:hidden transition-all duration-300",
           isSidebarOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         )}
         onClick={toggleSidebar}
@@ -123,7 +124,7 @@ const MainLayout = ({ onLogout, userRole, setUserRole, userData, allowedModules 
         )}
         <Navbar toggleSidebar={toggleSidebar} onLogout={onLogout} userRole={userRole} allowedModules={allowedModules} />
 
-        <main className="flex-1 overflow-y-auto custom-scrollbar relative z-[1] pb-6 md:pb-0">
+        <main className="flex-1 overflow-y-auto custom-scrollbar relative z-[1] pb-16 md:pb-0">
           {isExpired && !isAllowedPathWhenExpired ? (
             <div className="flex items-center justify-center h-full p-6 text-center">
               <div className="max-w-md bg-white p-8 rounded-xl shadow-sm border border-rose-100">
@@ -163,6 +164,9 @@ const MainLayout = ({ onLogout, userRole, setUserRole, userData, allowedModules 
             </ErrorBoundary>
           )}
         </main>
+
+        {/* Mobile Bottom Navigation Bar for touch viewports */}
+        <MobileBottomNav toggleSidebar={toggleSidebar} allowedModules={allowedModules} />
       </div>
     </div>
   );

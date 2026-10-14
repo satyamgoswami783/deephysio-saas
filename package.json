@@ -1,0 +1,10 @@
+{
+  "name": "deephysio-saas",
+  "version": "1.0.0",
+  "description": "deePhysio Clinical SaaS",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "postinstall": "npm --prefix \"deePhysio-Backend (2)\" install"
+  }
+}

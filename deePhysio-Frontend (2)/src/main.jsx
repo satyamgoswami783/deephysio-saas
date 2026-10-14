@@ -20,14 +20,8 @@ if (typeof window !== 'undefined') {
   });
 }
 
-// One-time cleanup: Clear legacy persistent tokens from localStorage
-// to ensure the new sessionStorage-based manual login takes immediate effect.
-const keysToClear = ['token', 'deephysio_user', 'deephysio_role'];
-keysToClear.forEach(key => {
-  if (localStorage.getItem(key)) {
-    localStorage.removeItem(key);
-  }
-});
+// Register PWA service worker and mobile listeners
+import('./pwa/PwaManager');
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(

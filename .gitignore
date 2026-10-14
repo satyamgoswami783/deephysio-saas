@@ -39,6 +39,10 @@ storage/whatsapp_sessions/
 **/*.tmp
 *.bak
 **/*.bak
+.backup_audit/
+**/.backup_audit/
+scratch/
+**/scratch/
 
 # Operating System files
 .DS_Store

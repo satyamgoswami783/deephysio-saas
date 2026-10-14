@@ -103,6 +103,26 @@
   .section-content-flat {
     @apply p-4;
   }
+
+  /* Mobile Responsive Table wrapper */
+  .table-responsive-container {
+    @apply w-full overflow-x-auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Mobile Safe Area Insets */
+  .safe-area-top {
+    padding-top: max(env(safe-area-inset-top, 0px), 0px);
+  }
+  .safe-area-bottom {
+    padding-bottom: max(env(safe-area-inset-bottom, 0px), 0px);
+  }
+
+  /* Touch-friendly interactive buttons */
+  .touch-tap {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
 }
 
 /* Animations */
